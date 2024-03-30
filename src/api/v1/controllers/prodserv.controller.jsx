@@ -14,6 +14,7 @@ export const getProdServList = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    
   }
 };
 

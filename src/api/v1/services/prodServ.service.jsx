@@ -22,6 +22,7 @@ export const getProdServItem = async (id, keyType) => {
     if (keyType === "OK") {
       prodServItem = await ProdServ.findOne({
         IdProdServOK: id,
+        
       });
     } else if (keyType === "BK") {
       prodServItem = await ProdServ.findOne({

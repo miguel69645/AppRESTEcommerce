@@ -55,39 +55,3 @@ export const postProdServItem = async (req, res, next) => {
     next(error);
   }
 };
-
-export const putProdServItem = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    console.log("FIC: controller id -> ", id);
-    const paProdServItem = req.body;
-    console.log("FIC: controller body -> ", paProdServItem);
-    const updatedProdServItem = await ProdServServices.putProdServItem(
-      id,
-      paProdServItem
-    );
-    if (!updatedProdServItem) {
-      throw boom.badRequest("No se pudo actualizar el Producto y/o Servicio.");
-    } else if (updatedProdServItem) {
-      res.status(200).json(updatedProdServItem);
-    }
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const deleteProdServItem = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const deletedProdServItem = await ProdServServices.deleteProdServItem(id);
-    if (!deletedProdServItem) {
-      throw boom.badRequest("No se pudo eliminar el Producto y/o Servicio.");
-    } else {
-      res
-        .status(200)
-        .json({ message: "Producto y/o Servicio eliminado correctamente." });
-    }
-  } catch (error) {
-    next(error);
-  }
-};

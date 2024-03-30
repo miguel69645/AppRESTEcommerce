@@ -7,10 +7,6 @@ router.get("/", prodServController.getProdServList);
 //router.get('/item/:ficIdProdServ', prodServController.getProdServItem);
 router.get("/:id", prodServController.getProdServItem);
 
-router.post("/", prodServController.postProdServItem);
-
-router.put("/:id", prodServController.putProdServItem);
-
-router.delete("/:id", prodServController.deleteProdServItem);
+router.post('/', prodServController.postProdServItem);
 
 export default router;

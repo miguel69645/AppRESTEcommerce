@@ -43,35 +43,3 @@ export const postProdServItem = async (paProdServItem) => {
     throw error;
   }
 };
-
-//FIC: SERVICES PUT
-// PUT (MODIFY) Productos y/o Servicios.
-export const putProdServItem = async (id, paProdServItem) => {
-  try {
-    //console.log("FIC: PUT API INSTITUTO", id);
-    return await ProdServ.findOneAndUpdate(
-      { IdProdServOK: id },
-      paProdServItem,
-      {
-        new: true,
-      }
-    );
-  } catch (error) {
-    throw boom.badImplementation(error);
-  }
-};
-
-// DELETE (REMOVE) PRODSERV
-export const deleteProdServItem = async (id) => {
-  try {
-    const deletedProdServItem = await ProdServ.findOneAndDelete({
-      IdProdServOK: id,
-    });
-    if (!deletedProdServItem) {
-      throw boom.badRequest("No se pudo eliminar el Producto y/o Servicio.");
-    }
-    return deletedProdServItem;
-  } catch (error) {
-    throw boom.badImplementation(error);
-  }
-};

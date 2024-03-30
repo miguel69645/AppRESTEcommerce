@@ -5,7 +5,7 @@
 ### GET
 GET {{api}}
 ### GET ITEM
-GET {{api}}/1
+GET {{api}}/101
 ### GET ITEM
 GET {{api}}/1?keyType=OK
 ### GET ITEM
@@ -21,7 +21,7 @@ Content-Type: application/json
     "IdProdServBK" : "ENSA100", 
     "IdProdServMaOK" : "1", 
     "IdProdServMaBK" : "1", 
-    "DesProdServ" : "Playstation 5", 
+    "DesProdServ" : "ENFRIADOR VERTICAL G326 2PTAS CO2", 
     "IdUMedidaOK" : "1", 
     "IdUMedidaBK" : "1", 
     "cat_prod_serv_estatus" : [
@@ -155,19 +155,4 @@ Content-Type: application/json
         "Activo" : "S", 
         "Borrado" : "N"
     }
-}
-
-PUT {{api}}/104
-
-Content-Type: application/json
-
-{
-    "IdProdServPK": 102,
-    "IdProdServOK": "102",
-    "IdProdServBK": "ENSA100",
-    "IdProdServMaOK": "1",
-    "IdProdServMaBK": "1",
-    "DesProdServ": "ENFRIADOR VERTICAL G326 2PTAS CO2",
-    "IdUMedidaOK": "1",
-    "IdUMedidaBK": "1"
 }

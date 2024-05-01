@@ -1,6 +1,7 @@
 //Commerce
 import { Router } from "express";
 import * as prodServController from "../controllers/prodserv.controller";
+
 const router = Router();
 //ficRouter.get('/list', ProdServController.getProdServList);
 router.get("/", prodServController.getProdServList);

@@ -9,8 +9,9 @@ import cors from 'cors';
 //FIC: Config para variables de entorno
 import config from './config/config';
 // Import Routes
-// import routeAPI from './api/v1/routes/index';
-import routeAPI from './api/pwa/routes/index';
+import routeAPICOM from './api/v1/routes/index';
+import routeAPIPWA from './api/pwa/routes/index';
+import routeAPIPWA2 from './api/pwa2/routes/index';
 //FIC: Declaramos la variable app igualandola a express
 const app = express();
 //FIC: Settings
@@ -33,7 +34,9 @@ app.get('/DrFIC', (req,res)=>{
     );
 })
 // Routes
-routeAPI(app);
+routeAPICOM(app);
+routeAPIPWA(app);
+routeAPIPWA2(app);
 // Swagger Docs
 // Middleware para el manejo de errores
 // Export App

@@ -30,6 +30,7 @@ app.set('port', _config["default"].PORT);
 app.use((0, _cors["default"])());
 app.use((0, _morgan["default"])('dev'));
 app.use(_express["default"].json());
+app.use(_express["default"]["static"]('dist'));
 app.use(_express["default"].urlencoded({
   extended: false
 }));

@@ -27,12 +27,6 @@ const inventariosSchema = new mongoose.Schema({
               Valor: { type: String, required: true },
               IdTipoSeccionOK: { type: String, required: true },
               Secuencia: { type: Number, required: true },
-              detail_row: {
-                Activo: { type: String, required: true },
-                Borrado: { type: String, required: true },
-                FechaReg: { type: Date, required: false },
-                UsuarioReg: { type: String, required: false },
-              },
             },
           ],
           movtos: [
@@ -43,12 +37,6 @@ const inventariosSchema = new mongoose.Schema({
               IdTipoMovtoOK: { type: String, required: true },
               IdClaseMovtoOK: { type: String, required: true },
               Referencia: { type: String, required: true },
-              detail_row: {
-                Activo: { type: String, required: true },
-                Borrado: { type: String, required: true },
-                FechaReg: { type: Date, required: false },
-                UsuarioReg: { type: String, required: false },
-              },
             },
           ],
           series: [
@@ -61,12 +49,6 @@ const inventariosSchema = new mongoose.Schema({
                   IdTipoEstatusOK: { type: String, required: true },
                   Actual: { type: String, required: true },
                   Observacion: { type: String, required: false },
-                  detail_row: {
-                    Activo: { type: String, required: true },
-                    Borrado: { type: String, required: true },
-                    FechaReg: { type: Date, required: false },
-                    UsuarioReg: { type: String, required: false },
-                  },
                 },
               ],
               estatus_venta: [
@@ -74,12 +56,6 @@ const inventariosSchema = new mongoose.Schema({
                   IdTipoEstatusOK: { type: String, required: true },
                   Actual: { type: String, required: true },
                   Observacion: { type: String, required: false },
-                  detail_row: {
-                    Activo: { type: String, required: true },
-                    Borrado: { type: String, required: true },
-                    FechaReg: { type: Date, required: false },
-                    UsuarioReg: { type: String, required: false },
-                  },
                 },
               ],
               ubicaciones: [
@@ -87,44 +63,14 @@ const inventariosSchema = new mongoose.Schema({
                   IdAlmacenOK: { type: String, required: false },
                   Ubicacion: { type: String, required: true },
                   Actual: { type: String, required: true },
-                  detail_row: {
-                    Activo: { type: String, required: true },
-                    Borrado: { type: String, required: true },
-                    FechaReg: { type: Date, required: false },
-                    UsuarioReg: { type: String, required: false },
-                  },
                 },
               ],
-              detail_row: {
-                Activo: { type: String, required: true },
-                Borrado: { type: String, required: true },
-                FechaReg: { type: Date, required: false },
-                UsuarioReg: { type: String, required: false },
-              },
             },
           ],
-          detail_row: {
-            Activo: { type: String, required: true },
-            Borrado: { type: String, required: true },
-            FechaReg: { type: Date, required: false },
-            UsuarioReg: { type: String, required: false },
-          },
         },
       ],
-      detail_row: {
-        Activo: { type: String, required: true },
-        Borrado: { type: String, required: true },
-        FechaReg: { type: Date, required: false },
-        UsuarioReg: { type: String, required: false },
-      },
     },
   ],
-  detail_row: {
-    Activo: { type: String, required: true },
-    Borrado: { type: String, required: true },
-    FechaReg: { type: Date, required: false },
-    UsuarioReg: { type: String, required: false },
-  },
 });
 
 export default mongoose.model(
@@ -132,9 +78,6 @@ export default mongoose.model(
   inventariosSchema,
   "cat_inventarios"
 );
-
-
-
 
 // const detailRowSchema = new Schema({
 //   Activo: { type: String, required: true },

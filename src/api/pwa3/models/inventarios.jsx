@@ -110,25 +110,25 @@ export default mongoose.model(
 //   detail_row: { type: detailRowSchema, required: true }
 // });
 
-const seriesSchema = new Schema({//esta
-  Serie: { type: String, required: true },
-  Placa: { type: String, required: true },
-  Observacion: { type: String, required: false },
-  estatus_fisico: [estatusSchema],
-  estatus_venta: [estatusSchema],
-  ubicaciones: [ubicacionesSchema],
-  detail_row: { type: detailRowSchema, required: true }
-});
+// const seriesSchema = new Schema({//esta
+//   Serie: { type: String, required: true },
+//   Placa: { type: String, required: true },
+//   Observacion: { type: String, required: false },
+//   estatus_fisico: [estatusSchema],
+//   estatus_venta: [estatusSchema],
+//   ubicaciones: [ubicacionesSchema],
+//   detail_row: { type: detailRowSchema, required: true }
+// });
 
-const movimientosSchema = new Schema({//esta
-  CantidadMovto: { type: Number, required: true },
-  CantidadAnt: { type: Number, required: true },
-  CantidadAct: { type: Number, required: true },
-  IdTipoMovtoOK: { type: String, required: true },
-  IdClaseMovtoOK: { type: String, required: true },
-  Referencia: { type: String, required: true },
-  detail_row: { type: detailRowSchema, required: true }
-});
+// const movimientosSchema = new Schema({//esta
+//   CantidadMovto: { type: Number, required: true },
+//   CantidadAnt: { type: Number, required: true },
+//   CantidadAct: { type: Number, required: true },
+//   IdTipoMovtoOK: { type: String, required: true },
+//   IdClaseMovtoOK: { type: String, required: true },
+//   Referencia: { type: String, required: true },
+//   detail_row: { type: detailRowSchema, required: true }
+// });
 
 // const almacenesSchema = new Schema({//esta
 //   IdAlmacenOK: { type: String, required: true },
@@ -146,12 +146,12 @@ const movimientosSchema = new Schema({//esta
 //   detail_row: { type: detailRowSchema, required: true }
 // });
 
-const negocioSchema = new Schema({
-  IdNegocioOK: { type: String, required: true },
-  ControlaSerie: { type: String, required: true },
-  almacenes: [almacenesSchema],
-  detail_row: { type: detailRowSchema, required: true }
-});
+// const negocioSchema = new Schema({
+//   IdNegocioOK: { type: String, required: true },
+//   ControlaSerie: { type: String, required: true },
+//   almacenes: [almacenesSchema],
+//   detail_row: { type: detailRowSchema, required: true }
+// });
 
 // const mainSchema = new Schema({
 //   IdInstitutoOK: { type: String, required: true },

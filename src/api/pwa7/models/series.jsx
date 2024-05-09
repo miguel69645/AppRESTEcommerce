@@ -16,11 +16,7 @@ const detailRowSchema = new mongoose.Schema({
 const seriesSchema = new mongoose.Schema({
     Serie: { type: String, required: true },
     Placa: { type: String, required: true },
-    Observacion: { type: String, required: false },
-    estatus_fisico: [estatusSchema],
-    estatus_venta: [estatusSchema],
-    ubicaciones: [ubicacionesSchema],
-    detail_row: { type: detailRowSchema, required: true }
+    Observacion: { type: String, required: false }
 });
 
 export default mongoose.model("cat_series", seriesSchema, "cat_series");

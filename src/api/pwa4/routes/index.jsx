@@ -7,7 +7,7 @@ const routerAPI = (app) => {
     const api = config.API_URL;
     app.use(api, router);
     // Routes
-    router.use("/pwa2/negocios", negociosRoutes);
+    router.use("/pwa4/negocios", negociosRoutes);
     // Return Router
     return router;
 };

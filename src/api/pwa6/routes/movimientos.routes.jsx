@@ -1,9 +1,16 @@
 import { Router } from "express";
-import * as movimientosController from "../controllers/movimientos.controller";
+import * as MovimientosController from "../controllers/movimientos.controller";
 
 const router = Router();
 
 // GET
-router.get("/", movimientosController.getMovimientosList);
+router.get("/", MovimientosController.getMovimientosList);
+router.get("/:id", MovimientosController.getMovimiento);
+// POST
+router.post("/", MovimientosController.postMovimiento);
+// PUT
+router.put("/:id", MovimientosController.putMovimientoItem);
+// DELETE
+router.delete("/:id", MovimientosController.deleteMovimiento);
 
 export default router;

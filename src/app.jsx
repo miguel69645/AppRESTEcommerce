@@ -47,11 +47,11 @@ routeAPIPWA(app);
 routeAPIPWA2(app);
 routeAPIPWA3(app);
 routeAPIPWA4(app);
-routeAPIPWA5(app);
+// routeAPIPWA5(app);
 routeAPIPWA6(app);
 routeAPIPWA7(app);
-routeAPIPWA8(app);
-routeAPIPWA9(app);
+// routeAPIPWA8(app);
+// routeAPIPWA9(app);
 // Swagger Docs
 // Middleware para el manejo de errores
 // Export App

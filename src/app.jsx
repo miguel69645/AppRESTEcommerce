@@ -42,11 +42,11 @@ app.get("/DrFIC", (req, res) => {
   );
 });
 // Routes
-routeAPICOM(app);
-routeAPIPWA(app);
-routeAPIPWA2(app);
-routeAPIPWA3(app);
-routeAPIPWA4(app);
+// routeAPICOM(app);
+// routeAPIPWA(app);
+// routeAPIPWA2(app);
+// routeAPIPWA3(app);
+// routeAPIPWA4(app);
 routeAPIPWA5(app);
 routeAPIPWA6(app);
 routeAPIPWA7(app);

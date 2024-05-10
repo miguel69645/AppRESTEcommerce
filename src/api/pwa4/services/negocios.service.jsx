@@ -1,5 +1,5 @@
 // Education
-import Negocios from "../models/Negocios";
+import Negocios from "../models/negocios";
 import boom from "@hapi/boom";
 
 // GET ALL NEGOCIOS

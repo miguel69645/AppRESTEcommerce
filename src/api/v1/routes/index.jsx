@@ -15,3 +15,4 @@ const routerAPI = (app) => {
   return router;
 };
 module.exports = routerAPI;
+

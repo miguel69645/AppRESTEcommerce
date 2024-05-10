@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.putNegocioItem = exports.postNegocio = exports.getNegocios = exports.getNegocio = exports.deleteNegocio = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-var _Negocios = _interopRequireDefault(require("../models/Negocios"));
+var _negocios = _interopRequireDefault(require("../models/negocios"));
 var _boom = _interopRequireDefault(require("@hapi/boom"));
 // Education
 
@@ -20,7 +20,7 @@ var getNegocios = exports.getNegocios = /*#__PURE__*/function () {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return _Negocios["default"].find();
+          return _negocios["default"].find();
         case 3:
           negociosList = _context.sent;
           return _context.abrupt("return", negociosList);
@@ -52,7 +52,7 @@ var getNegocio = exports.getNegocio = /*#__PURE__*/function () {
             break;
           }
           _context2.next = 4;
-          return _Negocios["default"].findOne({
+          return _negocios["default"].findOne({
             IdNegocioOK: id
           });
         case 4:
@@ -65,7 +65,7 @@ var getNegocio = exports.getNegocio = /*#__PURE__*/function () {
             break;
           }
           _context2.next = 10;
-          return _Negocios["default"].findOne({
+          return _negocios["default"].findOne({
             IdNegocioBK: id
           });
         case 10:
@@ -95,7 +95,7 @@ var postNegocio = exports.postNegocio = /*#__PURE__*/function () {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
-          newNegocioItem = new _Negocios["default"](paNegocioItem);
+          newNegocioItem = new _negocios["default"](paNegocioItem);
           _context3.next = 4;
           return newNegocioItem.save();
         case 4:
@@ -123,7 +123,7 @@ var putNegocioItem = exports.putNegocioItem = /*#__PURE__*/function () {
         case 0:
           _context4.prev = 0;
           _context4.next = 3;
-          return _Negocios["default"].findOneAndUpdate({
+          return _negocios["default"].findOneAndUpdate({
             IdNegocioOK: id
           }, paNegocioItem, {
             "new": true
@@ -154,7 +154,7 @@ var deleteNegocio = exports.deleteNegocio = /*#__PURE__*/function () {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return _Negocios["default"].findOneAndDelete({
+          return _negocios["default"].findOneAndDelete({
             IdNegocioOK: id
           });
         case 3:

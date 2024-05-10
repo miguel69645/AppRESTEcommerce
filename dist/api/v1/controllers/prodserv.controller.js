@@ -5,7 +5,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putProdServItem = exports.postProdServItem = exports.getProdServList = exports.getProdServItem = exports.deleteProdServItem = void 0;
+exports.postProdServItem = exports.getProdServList = exports.getProdServItem = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var ProdServServices = _interopRequireWildcard(require("../services/prodServ.service"));
@@ -136,84 +136,5 @@ var postProdServItem = exports.postProdServItem = /*#__PURE__*/function () {
   }));
   return function postProdServItem(_x7, _x8, _x9) {
     return _ref3.apply(this, arguments);
-  };
-}();
-var putProdServItem = exports.putProdServItem = /*#__PURE__*/function () {
-  var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res, next) {
-    var id, paProdServItem, updatedProdServItem;
-    return _regenerator["default"].wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
-        case 0:
-          _context4.prev = 0;
-          id = req.params.id;
-          console.log("FIC: controller id -> ", id);
-          paProdServItem = req.body;
-          console.log("FIC: controller body -> ", paProdServItem);
-          _context4.next = 7;
-          return ProdServServices.putProdServItem(id, paProdServItem);
-        case 7:
-          updatedProdServItem = _context4.sent;
-          if (updatedProdServItem) {
-            _context4.next = 12;
-            break;
-          }
-          throw _boom["default"].badRequest("No se pudo actualizar el Producto y/o Servicio.");
-        case 12:
-          if (updatedProdServItem) {
-            res.status(200).json(updatedProdServItem);
-          }
-        case 13:
-          _context4.next = 18;
-          break;
-        case 15:
-          _context4.prev = 15;
-          _context4.t0 = _context4["catch"](0);
-          next(_context4.t0);
-        case 18:
-        case "end":
-          return _context4.stop();
-      }
-    }, _callee4, null, [[0, 15]]);
-  }));
-  return function putProdServItem(_x10, _x11, _x12) {
-    return _ref4.apply(this, arguments);
-  };
-}();
-var deleteProdServItem = exports.deleteProdServItem = /*#__PURE__*/function () {
-  var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res, next) {
-    var id, deletedProdServItem;
-    return _regenerator["default"].wrap(function _callee5$(_context5) {
-      while (1) switch (_context5.prev = _context5.next) {
-        case 0:
-          _context5.prev = 0;
-          id = req.params.id;
-          _context5.next = 4;
-          return ProdServServices.deleteProdServItem(id);
-        case 4:
-          deletedProdServItem = _context5.sent;
-          if (deletedProdServItem) {
-            _context5.next = 9;
-            break;
-          }
-          throw _boom["default"].badRequest("No se pudo eliminar el Producto y/o Servicio.");
-        case 9:
-          res.status(200).json({
-            message: "Producto y/o Servicio eliminado correctamente."
-          });
-        case 10:
-          _context5.next = 15;
-          break;
-        case 12:
-          _context5.prev = 12;
-          _context5.t0 = _context5["catch"](0);
-          next(_context5.t0);
-        case 15:
-        case "end":
-          return _context5.stop();
-      }
-    }, _callee5, null, [[0, 12]]);
-  }));
-  return function deleteProdServItem(_x13, _x14, _x15) {
-    return _ref5.apply(this, arguments);
   };
 }();

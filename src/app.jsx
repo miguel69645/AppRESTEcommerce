@@ -9,11 +9,11 @@ import cors from "cors";
 //FIC: Config para variables de entorno
 import config from "./config/config";
 // Import Routes
-import routeAPICOM from "./api/v1/routes/index";
-import routeAPIPWA from "./api/pwa/routes/index";
-import routeAPIPWA2 from "./api/pwa2/routes/index";
-import routeAPIPWA3 from "./api/pwa3/routes/index";
-import routeAPIPWA4 from "./api/pwa4/routes/index";
+// import routeAPICOM from "./api/v1/routes/index";
+// import routeAPIPWA from "./api/pwa/routes/index";
+// import routeAPIPWA2 from "./api/pwa2/routes/index";
+// import routeAPIPWA3 from "./api/pwa3/routes/index";
+// import routeAPIPWA4 from "./api/pwa4/routes/index";
 import routeAPIPWA5 from "./api/pwa5/routes/index";
 import routeAPIPWA6 from "./api/pwa6/routes/index";
 import routeAPIPWA7 from "./api/pwa7/routes/index";

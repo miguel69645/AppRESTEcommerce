@@ -1,5 +1,5 @@
 // Education
-import Movimientos from "../models/Movimientos";
+import Movimientos from "../models/movimientos";
 import boom from "@hapi/boom";
 
 // GET ALL MOVIMIENTOS

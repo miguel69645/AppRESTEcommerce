@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.putSerieItem = exports.postSerie = exports.getSeries = exports.getSerie = exports.deleteSerie = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-var _Series = _interopRequireDefault(require("../models/Series"));
+var _series = _interopRequireDefault(require("../models/series"));
 var _boom = _interopRequireDefault(require("@hapi/boom"));
 // Education
 
@@ -20,7 +20,7 @@ var getSeries = exports.getSeries = /*#__PURE__*/function () {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return _Series["default"].find();
+          return _series["default"].find();
         case 3:
           seriesList = _context.sent;
           return _context.abrupt("return", seriesList);
@@ -48,7 +48,7 @@ var getSerie = exports.getSerie = /*#__PURE__*/function () {
         case 0:
           _context2.prev = 0;
           _context2.next = 3;
-          return _Series["default"].findOne({
+          return _series["default"].findOne({
             Serie: id
           });
         case 3:
@@ -77,7 +77,7 @@ var postSerie = exports.postSerie = /*#__PURE__*/function () {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
-          newSerieItem = new _Series["default"](paSerieItem);
+          newSerieItem = new _series["default"](paSerieItem);
           _context3.next = 4;
           return newSerieItem.save();
         case 4:
@@ -105,7 +105,7 @@ var putSerieItem = exports.putSerieItem = /*#__PURE__*/function () {
         case 0:
           _context4.prev = 0;
           _context4.next = 3;
-          return _Series["default"].findOneAndUpdate({
+          return _series["default"].findOneAndUpdate({
             Serie: id
           }, paSerieItem, {
             "new": true
@@ -136,7 +136,7 @@ var deleteSerie = exports.deleteSerie = /*#__PURE__*/function () {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return _Series["default"].findOneAndDelete({
+          return _series["default"].findOneAndDelete({
             Serie: id
           });
         case 3:

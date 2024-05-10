@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.putMovimientoItem = exports.postMovimiento = exports.getMovimientos = exports.getMovimiento = exports.deleteMovimiento = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-var _Movimientos = _interopRequireDefault(require("../models/Movimientos"));
+var _movimientos = _interopRequireDefault(require("../models/movimientos"));
 var _boom = _interopRequireDefault(require("@hapi/boom"));
 // Education
 
@@ -20,7 +20,7 @@ var getMovimientos = exports.getMovimientos = /*#__PURE__*/function () {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return _Movimientos["default"].find();
+          return _movimientos["default"].find();
         case 3:
           movimientosList = _context.sent;
           return _context.abrupt("return", movimientosList);
@@ -48,7 +48,7 @@ var getMovimiento = exports.getMovimiento = /*#__PURE__*/function () {
         case 0:
           _context2.prev = 0;
           _context2.next = 3;
-          return _Movimientos["default"].findOne({
+          return _movimientos["default"].findOne({
             IdTipoMovtoOK: id
           });
         case 3:
@@ -77,7 +77,7 @@ var postMovimiento = exports.postMovimiento = /*#__PURE__*/function () {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
-          newMovimientoItem = new _Movimientos["default"](paMovimientoItem);
+          newMovimientoItem = new _movimientos["default"](paMovimientoItem);
           _context3.next = 4;
           return newMovimientoItem.save();
         case 4:
@@ -105,7 +105,7 @@ var putMovimientoItem = exports.putMovimientoItem = /*#__PURE__*/function () {
         case 0:
           _context4.prev = 0;
           _context4.next = 3;
-          return _Movimientos["default"].findOneAndUpdate({
+          return _movimientos["default"].findOneAndUpdate({
             IdTipoMovtoOK: id
           }, paMovimientoItem, {
             "new": true
@@ -136,7 +136,7 @@ var deleteMovimiento = exports.deleteMovimiento = /*#__PURE__*/function () {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return _Movimientos["default"].findOneAndDelete({
+          return _movimientos["default"].findOneAndDelete({
             IdTipoMovtoOK: id
           });
         case 3:

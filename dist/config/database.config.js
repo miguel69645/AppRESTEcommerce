@@ -13,8 +13,6 @@ var _config = _interopRequireDefault(require("./config"));
         _context.prev = 0;
         _context.next = 3;
         return _mongoose["default"].connect(_config["default"].CONNECTION_STRING, {
-          // useNewUrlParser: true,
-          // useUnifiedTopology: true,
           dbName: _config["default"].DATABASE
         });
       case 3:

@@ -1,5 +1,5 @@
 // Education
-import Series from "../models/Series";
+import Series from "../models/series";
 import boom from "@hapi/boom";
 
 // GET ALL SERIES

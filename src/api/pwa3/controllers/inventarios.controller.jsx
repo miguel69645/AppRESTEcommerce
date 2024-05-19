@@ -14,7 +14,6 @@ export const getInventariosList = async (req, res, next) => {
     next(error);
   }
 };
-
 // GET INVENTARIO BY ID
 export const getInventario = async (req, res, next) => {
   try {
@@ -29,7 +28,6 @@ export const getInventario = async (req, res, next) => {
     next(error);
   }
 };
-
 // POST (ADD) INVENTARIO
 export const postInventario = async (req, res, next) => {
   try {
@@ -46,7 +44,6 @@ export const postInventario = async (req, res, next) => {
     next(error);
   }
 };
-
 // PUT (MODIFY) INVENTARIO
 export const putInventarioItem = async (req, res, next) => {
   try {
@@ -65,7 +62,6 @@ export const putInventarioItem = async (req, res, next) => {
     next(error);
   }
 };
-
 // DELETE INVENTARIO BY ID
 export const deleteInventario = async (req, res, next) => {
   try {
@@ -77,6 +73,76 @@ export const deleteInventario = async (req, res, next) => {
       throw boom.badRequest("No se pudo eliminar el inventario.");
     } else {
       res.status(200).json({ message: "Inventario eliminado correctamente." });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+// GET INVENTARIO BY PARAMETERS
+export const getInventarioByParams = async (req, res, next) => {
+  try {
+    const { IdInstitutoOK, IdProdServOK, IdPresentaOK } = req.params;
+    const inventarioItem = await InventariosServices.getInventarioByParams(
+      IdInstitutoOK,
+      IdProdServOK,
+      IdPresentaOK
+    );
+    if (!inventarioItem) {
+      throw boom.notFound(
+        "No se encontró el inventario con los parámetros dados."
+      );
+    } else {
+      res.status(200).json(inventarioItem);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+// GET ALMACENES BY PARAMETERS
+export const getAlmacenesByParams = async (req, res, next) => {
+  try {
+    const { IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK } =
+      req.params;
+    const almacenes = await InventariosServices.getAlmacenesByParams(
+      IdInstitutoOK,
+      IdProdServOK,
+      IdPresentaOK,
+      IdNegocioOK
+    );
+    if (!almacenes) {
+      throw boom.notFound(
+        "No se encontraron almacenes con los parámetros dados."
+      );
+    } else {
+      res.status(200).json(almacenes);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+// GET ALMACEN BY PARAMETERS
+export const getAlmacenByParams = async (req, res, next) => {
+  try {
+    const {
+      IdInstitutoOK,
+      IdProdServOK,
+      IdPresentaOK,
+      IdNegocioOK,
+      IdAlmacenOK,
+    } = req.params;
+    const almacen = await InventariosServices.getAlmacenByParams(
+      IdInstitutoOK,
+      IdProdServOK,
+      IdPresentaOK,
+      IdNegocioOK,
+      IdAlmacenOK
+    );
+    if (!almacen) {
+      throw boom.notFound(
+        "No se encontró el almacén con los parámetros dados."
+      );
+    } else {
+      res.status(200).json(almacen);
     }
   } catch (error) {
     next(error);

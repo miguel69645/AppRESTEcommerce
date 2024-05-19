@@ -5,7 +5,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putInventarioItem = exports.postInventario = exports.getInventariosList = exports.getInventario = exports.deleteInventario = void 0;
+exports.putInventarioItem = exports.postInventario = exports.getInventariosList = exports.getInventarioByParams = exports.getInventario = exports.getAlmacenesByParams = exports.getAlmacenByParams = exports.deleteInventario = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var InventariosServices = _interopRequireWildcard(require("../services/inventarios.services"));
@@ -48,7 +48,6 @@ var getInventariosList = exports.getInventariosList = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-
 // GET INVENTARIO BY ID
 var getInventario = exports.getInventario = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res, next) {
@@ -86,7 +85,6 @@ var getInventario = exports.getInventario = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
-
 // POST (ADD) INVENTARIO
 var postInventario = exports.postInventario = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res, next) {
@@ -124,7 +122,6 @@ var postInventario = exports.postInventario = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
-
 // PUT (MODIFY) INVENTARIO
 var putInventarioItem = exports.putInventarioItem = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res, next) {
@@ -163,7 +160,6 @@ var putInventarioItem = exports.putInventarioItem = /*#__PURE__*/function () {
     return _ref4.apply(this, arguments);
   };
 }();
-
 // DELETE INVENTARIO BY ID
 var deleteInventario = exports.deleteInventario = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res, next) {
@@ -201,5 +197,116 @@ var deleteInventario = exports.deleteInventario = /*#__PURE__*/function () {
   }));
   return function deleteInventario(_x13, _x14, _x15) {
     return _ref5.apply(this, arguments);
+  };
+}();
+// GET INVENTARIO BY PARAMETERS
+var getInventarioByParams = exports.getInventarioByParams = /*#__PURE__*/function () {
+  var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res, next) {
+    var _req$params, IdInstitutoOK, IdProdServOK, IdPresentaOK, inventarioItem;
+    return _regenerator["default"].wrap(function _callee6$(_context6) {
+      while (1) switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.prev = 0;
+          _req$params = req.params, IdInstitutoOK = _req$params.IdInstitutoOK, IdProdServOK = _req$params.IdProdServOK, IdPresentaOK = _req$params.IdPresentaOK;
+          _context6.next = 4;
+          return InventariosServices.getInventarioByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK);
+        case 4:
+          inventarioItem = _context6.sent;
+          if (inventarioItem) {
+            _context6.next = 9;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontró el inventario con los parámetros dados.");
+        case 9:
+          res.status(200).json(inventarioItem);
+        case 10:
+          _context6.next = 15;
+          break;
+        case 12:
+          _context6.prev = 12;
+          _context6.t0 = _context6["catch"](0);
+          next(_context6.t0);
+        case 15:
+        case "end":
+          return _context6.stop();
+      }
+    }, _callee6, null, [[0, 12]]);
+  }));
+  return function getInventarioByParams(_x16, _x17, _x18) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+// GET ALMACENES BY PARAMETERS
+var getAlmacenesByParams = exports.getAlmacenesByParams = /*#__PURE__*/function () {
+  var _ref7 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(req, res, next) {
+    var _req$params2, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, almacenes;
+    return _regenerator["default"].wrap(function _callee7$(_context7) {
+      while (1) switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.prev = 0;
+          _req$params2 = req.params, IdInstitutoOK = _req$params2.IdInstitutoOK, IdProdServOK = _req$params2.IdProdServOK, IdPresentaOK = _req$params2.IdPresentaOK, IdNegocioOK = _req$params2.IdNegocioOK;
+          _context7.next = 4;
+          return InventariosServices.getAlmacenesByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK);
+        case 4:
+          almacenes = _context7.sent;
+          if (almacenes) {
+            _context7.next = 9;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontraron almacenes con los parámetros dados.");
+        case 9:
+          res.status(200).json(almacenes);
+        case 10:
+          _context7.next = 15;
+          break;
+        case 12:
+          _context7.prev = 12;
+          _context7.t0 = _context7["catch"](0);
+          next(_context7.t0);
+        case 15:
+        case "end":
+          return _context7.stop();
+      }
+    }, _callee7, null, [[0, 12]]);
+  }));
+  return function getAlmacenesByParams(_x19, _x20, _x21) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+// GET ALMACEN BY PARAMETERS
+var getAlmacenByParams = exports.getAlmacenByParams = /*#__PURE__*/function () {
+  var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(req, res, next) {
+    var _req$params3, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, IdAlmacenOK, almacen;
+    return _regenerator["default"].wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
+        case 0:
+          _context8.prev = 0;
+          _req$params3 = req.params, IdInstitutoOK = _req$params3.IdInstitutoOK, IdProdServOK = _req$params3.IdProdServOK, IdPresentaOK = _req$params3.IdPresentaOK, IdNegocioOK = _req$params3.IdNegocioOK, IdAlmacenOK = _req$params3.IdAlmacenOK;
+          _context8.next = 4;
+          return InventariosServices.getAlmacenByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, IdAlmacenOK);
+        case 4:
+          almacen = _context8.sent;
+          if (almacen) {
+            _context8.next = 9;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontró el almacén con los parámetros dados.");
+        case 9:
+          res.status(200).json(almacen);
+        case 10:
+          _context8.next = 15;
+          break;
+        case 12:
+          _context8.prev = 12;
+          _context8.t0 = _context8["catch"](0);
+          next(_context8.t0);
+        case 15:
+        case "end":
+          return _context8.stop();
+      }
+    }, _callee8, null, [[0, 12]]);
+  }));
+  return function getAlmacenByParams(_x22, _x23, _x24) {
+    return _ref8.apply(this, arguments);
   };
 }();

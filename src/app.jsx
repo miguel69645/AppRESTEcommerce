@@ -13,12 +13,6 @@ import routeAPICOM from "./api/v1/routes/index";
 import routeAPIPWA from "./api/pwa/routes/index";
 import routeAPIPWA2 from "./api/pwa2/routes/index";
 import routeAPIPWA3 from "./api/pwa3/routes/index";
-import routeAPIPWA4 from "./api/pwa4/routes/index";
-// import routeAPIPWA5 from "./api/pwa5/routes/index";
-// import routeAPIPWA6 from "./api/pwa6/routes/index";
-// import routeAPIPWA7 from "./api/pwa7/routes/index";
-// import routeAPIPWA8 from "./api/pwa8/routes/index";
-// import routeAPIPWA9 from "./api/pwa9/routes/index";
 //FIC: Declaramos la variable app igualandola a express
 const app = express();
 //FIC: Settings
@@ -46,12 +40,6 @@ routeAPICOM(app);
 routeAPIPWA(app);
 routeAPIPWA2(app);
 routeAPIPWA3(app);
-routeAPIPWA4(app);
-// routeAPIPWA5(app);
-// routeAPIPWA6(app);
-// routeAPIPWA7(app);
-// routeAPIPWA8(app);
-// routeAPIPWA9(app);
 // Swagger Docs
 // Middleware para el manejo de errores
 // Export App

@@ -78,26 +78,95 @@ export const deleteInventario = async (req, res, next) => {
     next(error);
   }
 };
-// GET INVENTARIO BY PARAMETERS
-export const getInventarioByParams = async (req, res, next) => {
+// GET NEGOCIOS BY PARAMETERS
+export const getNegociosByParams = async (req, res, next) => {
   try {
     const { IdInstitutoOK, IdProdServOK, IdPresentaOK } = req.params;
-    const inventarioItem = await InventariosServices.getInventarioByParams(
+    const negocio = await InventariosServices.getNegociosByParams(
       IdInstitutoOK,
       IdProdServOK,
       IdPresentaOK
     );
-    if (!inventarioItem) {
+    if (!negocio) {
       throw boom.notFound(
-        "No se encontró el inventario con los parámetros dados."
+        "No se encontró el negocio con los parámetros dados."
       );
     } else {
-      res.status(200).json(inventarioItem);
+      res.status(200).json({ IdNegocioOK: negocio });
     }
   } catch (error) {
     next(error);
   }
 };
+// POST NEGOCIO
+export const postNegocioController = async (req, res, next) => {
+  const { IdInstitutoOK, IdProdServOK, IdPresentaOK } = req.params;
+  const negocioData = req.body;
+  try {
+    const newNegocio = await InventariosServices.postNegocio(
+      IdInstitutoOK,
+      IdProdServOK,
+      IdPresentaOK,
+      negocioData
+    );
+    if (!newNegocio) {
+      throw boom.notFound(
+        "No se pudo crear el negocio con los datos proporcionados."
+      );
+    } else {
+      res.status(201).json(newNegocio);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// PUT NEGOCIO BY PARAMETERS
+export const putNegocioByParamsController = async (req, res, next) => {
+  const { IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK } = req.params;
+  const negocioData = req.body;
+  try {
+    const updatedNegocio = await InventariosServices.putNegocioByParams(
+      IdInstitutoOK,
+      IdProdServOK,
+      IdPresentaOK,
+      IdNegocioOK,
+      negocioData
+    );
+    if (!updatedNegocio) {
+      throw boom.notFound(
+        "No se pudo actualizar el negocio con los datos proporcionados."
+      );
+    } else {
+      res.status(200).json(updatedNegocio);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// DELETE NEGOCIO BY PARAMETERS
+export const deleteNegocioByParamsController = async (req, res, next) => {
+  const { IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK } = req.params;
+  try {
+    const message = await InventariosServices.deleteNegocioByParams(
+      IdInstitutoOK,
+      IdProdServOK,
+      IdPresentaOK,
+      IdNegocioOK
+    );
+    if (!message) {
+      throw boom.notFound(
+        "No se pudo eliminar el negocio con los datos proporcionados."
+      );
+    } else {
+      res.status(200).json(message);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 // GET ALMACENES BY PARAMETERS
 export const getAlmacenesByParams = async (req, res, next) => {
   try {

@@ -60,8 +60,8 @@ export const deleteInventario = async (id) => {
     throw boom.badImplementation(error);
   }
 };
-// GET INVENTARIO BY PARAMETERS
-export const getInventarioByParams = async (
+// GET NEGOCIOS BY PARAMETERS
+export const getNegociosByParams = async (
   IdInstitutoOK,
   IdProdServOK,
   IdPresentaOK
@@ -72,8 +72,90 @@ export const getInventarioByParams = async (
       IdInstitutoOK: IdInstitutoOK,
       IdProdServOK: IdProdServOK,
       IdPresentaOK: IdPresentaOK,
+    }).select("IdNegocioOK");
+    return inventarioItem ? inventarioItem.IdNegocioOK : null;
+  } catch (error) {
+    throw boom.internal(error);
+  }
+};
+// POST NEGOCIO
+export const postNegocio = async (
+  IdInstitutoOK,
+  IdProdServOK,
+  IdPresentaOK,
+  negocioData
+) => {
+  try {
+    const inventarioItem = await Inventarios.findOne({
+      IdInstitutoOK: IdInstitutoOK,
+      IdProdServOK: IdProdServOK,
+      IdPresentaOK: IdPresentaOK,
     });
-    return inventarioItem ? inventarioItem.negocios : null;
+    if (inventarioItem) {
+      inventarioItem.negocios.push(negocioData);
+      await inventarioItem.save();
+      return negocioData;
+    }
+    throw new Error("Inventario no encontrado");
+  } catch (error) {
+    throw boom.internal(error);
+  }
+};
+
+// PUT NEGOCIO BY PARAMETERS
+export const putNegocioByParams = async (
+  IdInstitutoOK,
+  IdProdServOK,
+  IdPresentaOK,
+  IdNegocioOK,
+  negocioData
+) => {
+  try {
+    const inventarioItem = await Inventarios.findOne({
+      IdInstitutoOK: IdInstitutoOK,
+      IdProdServOK: IdProdServOK,
+      IdPresentaOK: IdPresentaOK,
+    });
+    if (inventarioItem) {
+      const negocio = inventarioItem.negocios.find(
+        (negocio) => negocio.IdNegocioOK === IdNegocioOK
+      );
+      if (negocio) {
+        Object.assign(negocio, negocioData);
+        await inventarioItem.save();
+        return negocio;
+      }
+    }
+    throw new Error("Negocio no encontrado");
+  } catch (error) {
+    throw boom.internal(error);
+  }
+};
+
+// DELETE NEGOCIO BY PARAMETERS
+export const deleteNegocioByParams = async (
+  IdInstitutoOK,
+  IdProdServOK,
+  IdPresentaOK,
+  IdNegocioOK
+) => {
+  try {
+    const inventarioItem = await Inventarios.findOne({
+      IdInstitutoOK: IdInstitutoOK,
+      IdProdServOK: IdProdServOK,
+      IdPresentaOK: IdPresentaOK,
+    });
+    if (inventarioItem) {
+      const index = inventarioItem.negocios.findIndex(
+        (negocio) => negocio.IdNegocioOK === IdNegocioOK
+      );
+      if (index !== -1) {
+        inventarioItem.negocios.splice(index, 1);
+        await inventarioItem.save();
+        return { message: "Negocio eliminado" };
+      }
+    }
+    throw new Error("Negocio no encontrado");
   } catch (error) {
     throw boom.internal(error);
   }

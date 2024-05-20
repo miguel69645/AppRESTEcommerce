@@ -14,7 +14,6 @@ var _index = _interopRequireDefault(require("./api/v1/routes/index"));
 var _index2 = _interopRequireDefault(require("./api/pwa/routes/index"));
 var _index3 = _interopRequireDefault(require("./api/pwa2/routes/index"));
 var _index4 = _interopRequireDefault(require("./api/pwa3/routes/index"));
-var _index5 = _interopRequireDefault(require("./api/pwa4/routes/index"));
 //FIC: Establece la conexion a la BD
 
 //FIC: imports Swagger
@@ -24,11 +23,6 @@ var _index5 = _interopRequireDefault(require("./api/pwa4/routes/index"));
 
 // Import Routes
 
-// import routeAPIPWA5 from "./api/pwa5/routes/index";
-// import routeAPIPWA6 from "./api/pwa6/routes/index";
-// import routeAPIPWA7 from "./api/pwa7/routes/index";
-// import routeAPIPWA8 from "./api/pwa8/routes/index";
-// import routeAPIPWA9 from "./api/pwa9/routes/index";
 //FIC: Declaramos la variable app igualandola a express
 var app = (0, _express["default"])();
 //FIC: Settings
@@ -54,12 +48,6 @@ app.get("/DrFIC", function (req, res) {
 (0, _index2["default"])(app);
 (0, _index3["default"])(app);
 (0, _index4["default"])(app);
-(0, _index5["default"])(app);
-// routeAPIPWA5(app);
-// routeAPIPWA6(app);
-// routeAPIPWA7(app);
-// routeAPIPWA8(app);
-// routeAPIPWA9(app);
 // Swagger Docs
 // Middleware para el manejo de errores
 // Export App

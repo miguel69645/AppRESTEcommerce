@@ -15,9 +15,7 @@ export const getInventarios = async () => {
 export const getInventario = async (id) => {
   let inventarioItem;
   try {
-    inventarioItem = await Inventarios.findOne({
-      IdInstitutoOK: id,
-    });
+    inventarioItem = await Inventarios.findById(id);
     return inventarioItem;
   } catch (error) {
     throw boom.internal(error);

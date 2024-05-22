@@ -5,7 +5,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putInventarioItem = exports.postInventario = exports.getInventariosList = exports.getInventarioByParams = exports.getInventario = exports.getAlmacenesByParams = exports.getAlmacenByParams = exports.deleteInventario = void 0;
+exports.putNegocioByParamsController = exports.putInventarioItem = exports.postNegocioController = exports.postInventario = exports.getNegociosByParams = exports.getInventariosList = exports.getInventario = exports.getAlmacenesByParams = exports.getAlmacenByParams = exports.deleteNegocioByParamsController = exports.deleteInventario = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var InventariosServices = _interopRequireWildcard(require("../services/inventarios.services"));
@@ -199,26 +199,28 @@ var deleteInventario = exports.deleteInventario = /*#__PURE__*/function () {
     return _ref5.apply(this, arguments);
   };
 }();
-// GET INVENTARIO BY PARAMETERS
-var getInventarioByParams = exports.getInventarioByParams = /*#__PURE__*/function () {
+// GET NEGOCIOS BY PARAMETERS
+var getNegociosByParams = exports.getNegociosByParams = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res, next) {
-    var _req$params, IdInstitutoOK, IdProdServOK, IdPresentaOK, inventarioItem;
+    var _req$params, IdInstitutoOK, IdProdServOK, IdPresentaOK, negocio;
     return _regenerator["default"].wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
           _context6.prev = 0;
           _req$params = req.params, IdInstitutoOK = _req$params.IdInstitutoOK, IdProdServOK = _req$params.IdProdServOK, IdPresentaOK = _req$params.IdPresentaOK;
           _context6.next = 4;
-          return InventariosServices.getInventarioByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK);
+          return InventariosServices.getNegociosByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK);
         case 4:
-          inventarioItem = _context6.sent;
-          if (inventarioItem) {
+          negocio = _context6.sent;
+          if (negocio) {
             _context6.next = 9;
             break;
           }
-          throw _boom["default"].notFound("No se encontró el inventario con los parámetros dados.");
+          throw _boom["default"].notFound("No se encontró el negocio con los parámetros dados.");
         case 9:
-          res.status(200).json(inventarioItem);
+          res.status(200).json({
+            IdNegocioOK: negocio
+          });
         case 10:
           _context6.next = 15;
           break;
@@ -232,81 +234,197 @@ var getInventarioByParams = exports.getInventarioByParams = /*#__PURE__*/functio
       }
     }, _callee6, null, [[0, 12]]);
   }));
-  return function getInventarioByParams(_x16, _x17, _x18) {
+  return function getNegociosByParams(_x16, _x17, _x18) {
     return _ref6.apply(this, arguments);
   };
 }();
-// GET ALMACENES BY PARAMETERS
-var getAlmacenesByParams = exports.getAlmacenesByParams = /*#__PURE__*/function () {
+// POST NEGOCIO
+var postNegocioController = exports.postNegocioController = /*#__PURE__*/function () {
   var _ref7 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(req, res, next) {
-    var _req$params2, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, almacenes;
+    var _req$params2, IdInstitutoOK, IdProdServOK, IdPresentaOK, negocioData, newNegocio;
     return _regenerator["default"].wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
-          _context7.prev = 0;
-          _req$params2 = req.params, IdInstitutoOK = _req$params2.IdInstitutoOK, IdProdServOK = _req$params2.IdProdServOK, IdPresentaOK = _req$params2.IdPresentaOK, IdNegocioOK = _req$params2.IdNegocioOK;
-          _context7.next = 4;
+          _req$params2 = req.params, IdInstitutoOK = _req$params2.IdInstitutoOK, IdProdServOK = _req$params2.IdProdServOK, IdPresentaOK = _req$params2.IdPresentaOK;
+          negocioData = req.body;
+          _context7.prev = 2;
+          _context7.next = 5;
+          return InventariosServices.postNegocio(IdInstitutoOK, IdProdServOK, IdPresentaOK, negocioData);
+        case 5:
+          newNegocio = _context7.sent;
+          if (newNegocio) {
+            _context7.next = 10;
+            break;
+          }
+          throw _boom["default"].notFound("No se pudo crear el negocio con los datos proporcionados.");
+        case 10:
+          res.status(201).json(newNegocio);
+        case 11:
+          _context7.next = 16;
+          break;
+        case 13:
+          _context7.prev = 13;
+          _context7.t0 = _context7["catch"](2);
+          next(_context7.t0);
+        case 16:
+        case "end":
+          return _context7.stop();
+      }
+    }, _callee7, null, [[2, 13]]);
+  }));
+  return function postNegocioController(_x19, _x20, _x21) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+
+// PUT NEGOCIO BY PARAMETERS
+var putNegocioByParamsController = exports.putNegocioByParamsController = /*#__PURE__*/function () {
+  var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(req, res, next) {
+    var _req$params3, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, negocioData, updatedNegocio;
+    return _regenerator["default"].wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
+        case 0:
+          _req$params3 = req.params, IdInstitutoOK = _req$params3.IdInstitutoOK, IdProdServOK = _req$params3.IdProdServOK, IdPresentaOK = _req$params3.IdPresentaOK, IdNegocioOK = _req$params3.IdNegocioOK;
+          negocioData = req.body;
+          _context8.prev = 2;
+          _context8.next = 5;
+          return InventariosServices.putNegocioByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, negocioData);
+        case 5:
+          updatedNegocio = _context8.sent;
+          if (updatedNegocio) {
+            _context8.next = 10;
+            break;
+          }
+          throw _boom["default"].notFound("No se pudo actualizar el negocio con los datos proporcionados.");
+        case 10:
+          res.status(200).json(updatedNegocio);
+        case 11:
+          _context8.next = 16;
+          break;
+        case 13:
+          _context8.prev = 13;
+          _context8.t0 = _context8["catch"](2);
+          next(_context8.t0);
+        case 16:
+        case "end":
+          return _context8.stop();
+      }
+    }, _callee8, null, [[2, 13]]);
+  }));
+  return function putNegocioByParamsController(_x22, _x23, _x24) {
+    return _ref8.apply(this, arguments);
+  };
+}();
+
+// DELETE NEGOCIO BY PARAMETERS
+var deleteNegocioByParamsController = exports.deleteNegocioByParamsController = /*#__PURE__*/function () {
+  var _ref9 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9(req, res, next) {
+    var _req$params4, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, message;
+    return _regenerator["default"].wrap(function _callee9$(_context9) {
+      while (1) switch (_context9.prev = _context9.next) {
+        case 0:
+          _req$params4 = req.params, IdInstitutoOK = _req$params4.IdInstitutoOK, IdProdServOK = _req$params4.IdProdServOK, IdPresentaOK = _req$params4.IdPresentaOK, IdNegocioOK = _req$params4.IdNegocioOK;
+          _context9.prev = 1;
+          _context9.next = 4;
+          return InventariosServices.deleteNegocioByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK);
+        case 4:
+          message = _context9.sent;
+          if (message) {
+            _context9.next = 9;
+            break;
+          }
+          throw _boom["default"].notFound("No se pudo eliminar el negocio con los datos proporcionados.");
+        case 9:
+          res.status(200).json(message);
+        case 10:
+          _context9.next = 15;
+          break;
+        case 12:
+          _context9.prev = 12;
+          _context9.t0 = _context9["catch"](1);
+          next(_context9.t0);
+        case 15:
+        case "end":
+          return _context9.stop();
+      }
+    }, _callee9, null, [[1, 12]]);
+  }));
+  return function deleteNegocioByParamsController(_x25, _x26, _x27) {
+    return _ref9.apply(this, arguments);
+  };
+}();
+
+// GET ALMACENES BY PARAMETERS
+var getAlmacenesByParams = exports.getAlmacenesByParams = /*#__PURE__*/function () {
+  var _ref10 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10(req, res, next) {
+    var _req$params5, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, almacenes;
+    return _regenerator["default"].wrap(function _callee10$(_context10) {
+      while (1) switch (_context10.prev = _context10.next) {
+        case 0:
+          _context10.prev = 0;
+          _req$params5 = req.params, IdInstitutoOK = _req$params5.IdInstitutoOK, IdProdServOK = _req$params5.IdProdServOK, IdPresentaOK = _req$params5.IdPresentaOK, IdNegocioOK = _req$params5.IdNegocioOK;
+          _context10.next = 4;
           return InventariosServices.getAlmacenesByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK);
         case 4:
-          almacenes = _context7.sent;
+          almacenes = _context10.sent;
           if (almacenes) {
-            _context7.next = 9;
+            _context10.next = 9;
             break;
           }
           throw _boom["default"].notFound("No se encontraron almacenes con los parámetros dados.");
         case 9:
           res.status(200).json(almacenes);
         case 10:
-          _context7.next = 15;
+          _context10.next = 15;
           break;
         case 12:
-          _context7.prev = 12;
-          _context7.t0 = _context7["catch"](0);
-          next(_context7.t0);
+          _context10.prev = 12;
+          _context10.t0 = _context10["catch"](0);
+          next(_context10.t0);
         case 15:
         case "end":
-          return _context7.stop();
+          return _context10.stop();
       }
-    }, _callee7, null, [[0, 12]]);
+    }, _callee10, null, [[0, 12]]);
   }));
-  return function getAlmacenesByParams(_x19, _x20, _x21) {
-    return _ref7.apply(this, arguments);
+  return function getAlmacenesByParams(_x28, _x29, _x30) {
+    return _ref10.apply(this, arguments);
   };
 }();
 // GET ALMACEN BY PARAMETERS
 var getAlmacenByParams = exports.getAlmacenByParams = /*#__PURE__*/function () {
-  var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(req, res, next) {
-    var _req$params3, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, IdAlmacenOK, almacen;
-    return _regenerator["default"].wrap(function _callee8$(_context8) {
-      while (1) switch (_context8.prev = _context8.next) {
+  var _ref11 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee11(req, res, next) {
+    var _req$params6, IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, IdAlmacenOK, almacen;
+    return _regenerator["default"].wrap(function _callee11$(_context11) {
+      while (1) switch (_context11.prev = _context11.next) {
         case 0:
-          _context8.prev = 0;
-          _req$params3 = req.params, IdInstitutoOK = _req$params3.IdInstitutoOK, IdProdServOK = _req$params3.IdProdServOK, IdPresentaOK = _req$params3.IdPresentaOK, IdNegocioOK = _req$params3.IdNegocioOK, IdAlmacenOK = _req$params3.IdAlmacenOK;
-          _context8.next = 4;
+          _context11.prev = 0;
+          _req$params6 = req.params, IdInstitutoOK = _req$params6.IdInstitutoOK, IdProdServOK = _req$params6.IdProdServOK, IdPresentaOK = _req$params6.IdPresentaOK, IdNegocioOK = _req$params6.IdNegocioOK, IdAlmacenOK = _req$params6.IdAlmacenOK;
+          _context11.next = 4;
           return InventariosServices.getAlmacenByParams(IdInstitutoOK, IdProdServOK, IdPresentaOK, IdNegocioOK, IdAlmacenOK);
         case 4:
-          almacen = _context8.sent;
+          almacen = _context11.sent;
           if (almacen) {
-            _context8.next = 9;
+            _context11.next = 9;
             break;
           }
           throw _boom["default"].notFound("No se encontró el almacén con los parámetros dados.");
         case 9:
           res.status(200).json(almacen);
         case 10:
-          _context8.next = 15;
+          _context11.next = 15;
           break;
         case 12:
-          _context8.prev = 12;
-          _context8.t0 = _context8["catch"](0);
-          next(_context8.t0);
+          _context11.prev = 12;
+          _context11.t0 = _context11["catch"](0);
+          next(_context11.t0);
         case 15:
         case "end":
-          return _context8.stop();
+          return _context11.stop();
       }
-    }, _callee8, null, [[0, 12]]);
+    }, _callee11, null, [[0, 12]]);
   }));
-  return function getAlmacenByParams(_x22, _x23, _x24) {
-    return _ref8.apply(this, arguments);
+  return function getAlmacenByParams(_x31, _x32, _x33) {
+    return _ref11.apply(this, arguments);
   };
 }();

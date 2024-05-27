@@ -1,5 +1,9 @@
-import Inventarios from "../models/inventarios";
+import { Inventarios, Prodserv } from "../models/inventarios";
 import boom from "@hapi/boom";
+
+// *************************************************************************
+//                               CAT_INVENTARIOS
+// *************************************************************************
 
 // GET INVENTARIOS LIST
 export const getInventarios = async () => {
@@ -11,6 +15,7 @@ export const getInventarios = async () => {
     throw boom.internal(error);
   }
 };
+
 // GET INVENTARIO BY ID
 export const getInventario = async (id) => {
   let inventarioItem;
@@ -21,6 +26,7 @@ export const getInventario = async (id) => {
     throw boom.internal(error);
   }
 };
+
 // POST (ADD) INVENTARIO
 export const postInventario = async (paInventarioItem) => {
   try {
@@ -30,6 +36,7 @@ export const postInventario = async (paInventarioItem) => {
     throw error;
   }
 };
+
 // PUT (MODIFY) INVENTARIO
 export const putInventarioItem = async (id, paInventarioItem) => {
   try {
@@ -44,6 +51,7 @@ export const putInventarioItem = async (id, paInventarioItem) => {
     throw boom.badImplementation(error);
   }
 };
+
 // DELETE INVENTARIO BY ID
 export const deleteInventario = async (id) => {
   try {
@@ -58,158 +66,73 @@ export const deleteInventario = async (id) => {
     throw boom.badImplementation(error);
   }
 };
-// GET NEGOCIOS BY PARAMETERS
-export const getNegociosByParams = async (
-  IdInstitutoOK,
-  IdProdServOK,
-  IdPresentaOK
-) => {
-  let inventarioItem;
+
+// GET ALL STORES
+export const getAllStores = async (id, selectedBusinessId) => {
   try {
-    inventarioItem = await Inventarios.findOne({
-      IdInstitutoOK: IdInstitutoOK,
-      IdProdServOK: IdProdServOK,
-      IdPresentaOK: IdPresentaOK,
-    }).select("IdNegocioOK");
-    return inventarioItem ? inventarioItem.IdNegocioOK : null;
-  } catch (error) {
-    throw boom.internal(error);
-  }
-};
-// POST NEGOCIO
-export const postNegocio = async (
-  IdInstitutoOK,
-  IdProdServOK,
-  IdPresentaOK,
-  negocioData
-) => {
-  try {
-    const inventarioItem = await Inventarios.findOne({
-      IdInstitutoOK: IdInstitutoOK,
-      IdProdServOK: IdProdServOK,
-      IdPresentaOK: IdPresentaOK,
-    });
-    if (inventarioItem) {
-      inventarioItem.negocios.push(negocioData);
-      await inventarioItem.save();
-      return negocioData;
+    const inventarioItem = await Inventarios.findById(id);
+    if (!inventarioItem) {
+      throw boom.notFound("Inventario no encontrado.");
     }
-    throw new Error("Inventario no encontrado");
+
+    const selectedBusiness = inventarioItem.negocios.find(
+      (negocio) => negocio.IdNegocioOK === selectedBusinessId
+    );
+
+    if (!selectedBusiness) {
+      throw boom.notFound("Negocio no encontrado.");
+    }
+
+    const almacenes = selectedBusiness.almacenes.map((almacen) => ({
+      IdAlmacenOK: almacen.IdAlmacenOK,
+      Principal: almacen.Principal,
+      CantidadActual: almacen.CantidadActual,
+      CantidadDisponible: almacen.CantidadDisponible,
+      CantidadApartada: almacen.CantidadApartada,
+      CantidadTransito: almacen.CantidadTransito,
+      CantidadMerma: almacen.CantidadMerma,
+      StockMaximo: almacen.StockMaximo,
+      StockMinimo: almacen.StockMinimo,
+    }));
+
+    return almacenes;
   } catch (error) {
     throw boom.internal(error);
   }
 };
 
-// PUT NEGOCIO BY PARAMETERS
-export const putNegocioByParams = async (
-  IdInstitutoOK,
-  IdProdServOK,
-  IdPresentaOK,
-  IdNegocioOK,
-  negocioData
-) => {
+// *************************************************************************
+//                               CAT_PROD_SERV
+// *************************************************************************
+
+// GET ALL PRODSERV
+export const getAllProdserv = async () => {
   try {
-    const inventarioItem = await Inventarios.findOne({
-      IdInstitutoOK: IdInstitutoOK,
-      IdProdServOK: IdProdServOK,
-      IdPresentaOK: IdPresentaOK,
-    });
-    if (inventarioItem) {
-      const negocio = inventarioItem.negocios.find(
-        (negocio) => negocio.IdNegocioOK === IdNegocioOK
-      );
-      if (negocio) {
-        Object.assign(negocio, negocioData);
-        await inventarioItem.save();
-        return negocio;
-      }
-    }
-    throw new Error("Negocio no encontrado");
+    const prodservList = await Prodserv.find();
+    return prodservList;
   } catch (error) {
     throw boom.internal(error);
   }
 };
 
-// DELETE NEGOCIO BY PARAMETERS
-export const deleteNegocioByParams = async (
-  IdInstitutoOK,
-  IdProdServOK,
-  IdPresentaOK,
-  IdNegocioOK
-) => {
+// GET PRODUCT PRESENTATIONS
+export const getProductPresentations = async () => {
   try {
-    const inventarioItem = await Inventarios.findOne({
-      IdInstitutoOK: IdInstitutoOK,
-      IdProdServOK: IdProdServOK,
-      IdPresentaOK: IdPresentaOK,
-    });
-    if (inventarioItem) {
-      const index = inventarioItem.negocios.findIndex(
-        (negocio) => negocio.IdNegocioOK === IdNegocioOK
-      );
-      if (index !== -1) {
-        inventarioItem.negocios.splice(index, 1);
-        await inventarioItem.save();
-        return { message: "Negocio eliminado" };
-      }
-    }
-    throw new Error("Negocio no encontrado");
-  } catch (error) {
-    throw boom.internal(error);
-  }
-};
-// GET ALMACENES BY PARAMETERS
-export const getAlmacenesByParams = async (
-  IdInstitutoOK,
-  IdProdServOK,
-  IdPresentaOK,
-  IdNegocioOK
-) => {
-  let inventarioItem;
-  try {
-    inventarioItem = await Inventarios.findOne({
-      IdInstitutoOK: IdInstitutoOK,
-      IdProdServOK: IdProdServOK,
-      IdPresentaOK: IdPresentaOK,
-    });
-    if (inventarioItem) {
-      const negocio = inventarioItem.negocios.find(
-        (negocio) => negocio.IdNegocioOK === IdNegocioOK
-      );
-      return negocio ? negocio.almacenes : null;
-    }
-    return null;
-  } catch (error) {
-    throw boom.internal(error);
-  }
-};
-// GET ALMACEN BY PARAMETERS
-export const getAlmacenByParams = async (
-  IdInstitutoOK,
-  IdProdServOK,
-  IdPresentaOK,
-  IdNegocioOK,
-  IdAlmacenOK
-) => {
-  let inventarioItem;
-  try {
-    inventarioItem = await Inventarios.findOne({
-      IdInstitutoOK: IdInstitutoOK,
-      IdProdServOK: IdProdServOK,
-      IdPresentaOK: IdPresentaOK,
-    });
-    if (inventarioItem) {
-      const negocio = inventarioItem.negocios.find(
-        (negocio) => negocio.IdNegocioOK === IdNegocioOK
-      );
-      if (negocio) {
-        const almacen = negocio.almacenes.find(
-          (almacen) => almacen.IdAlmacenOK === IdAlmacenOK
-        );
-        return almacen;
-      }
-    }
-    return null;
+    const productPresentations = await Prodserv.aggregate([
+      {
+        $unwind: "$presentaciones",
+      },
+      {
+        $project: {
+          idProducto: "$IdProdServOK",
+          idPresentacion: "$presentaciones.IdPresentaOK",
+          descripcionDePresentacion: {
+            $concat: ["$DesProdServ", " - ", "$presentaciones.DesPresenta"],
+          },
+        },
+      },
+    ]);
+    return productPresentations;
   } catch (error) {
     throw boom.internal(error);
   }

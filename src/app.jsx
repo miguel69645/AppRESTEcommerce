@@ -9,7 +9,7 @@ import cors from "cors";
 //FIC: Config para variables de entorno
 import config from "./config/config";
 // Import Routes
-import routeAPICOM from "./api/v1/routes/index";
+// import routeAPICOM from "./api/v1/routes/index";
 import routeAPIPWA from "./api/pwa/routes/index";
 import routeAPIPWA2 from "./api/pwa2/routes/index";
 import routeAPIPWA3 from "./api/pwa3/routes/index";
@@ -42,7 +42,7 @@ app.get("/DrFIC", (req, res) => {
   );
 });
 // Routes
-routeAPICOM(app);
+// routeAPICOM(app);
 routeAPIPWA(app);
 routeAPIPWA2(app);
 routeAPIPWA3(app);

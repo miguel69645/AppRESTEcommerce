@@ -5,7 +5,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventariosList = exports.getInventario = exports.getAllStores = exports.getAllProdserv = exports.deleteInventario = void 0;
+exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventariosList = exports.getInventario = exports.getAllStores = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var InventariosServices = _interopRequireWildcard(require("../services/inventarios.services"));
@@ -246,66 +246,67 @@ var getAllStores = exports.getAllStores = /*#__PURE__*/function () {
   };
 }();
 
+// GET ALL SERIES
+var getAllSeries = exports.getAllSeries = /*#__PURE__*/function () {
+  var _ref7 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(req, res, next) {
+    var _req$params2, id, selectedBusinessId, selectedStoresId, series;
+    return _regenerator["default"].wrap(function _callee7$(_context7) {
+      while (1) switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.prev = 0;
+          _req$params2 = req.params, id = _req$params2.id, selectedBusinessId = _req$params2.selectedBusinessId, selectedStoresId = _req$params2.selectedStoresId;
+          _context7.next = 4;
+          return InventariosServices.getAllSeries(id, selectedBusinessId, selectedStoresId);
+        case 4:
+          series = _context7.sent;
+          if (series) {
+            _context7.next = 9;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontraron series para el almacén seleccionado.");
+        case 9:
+          res.status(200).json(series);
+        case 10:
+          _context7.next = 15;
+          break;
+        case 12:
+          _context7.prev = 12;
+          _context7.t0 = _context7["catch"](0);
+          next(_context7.t0);
+        case 15:
+        case "end":
+          return _context7.stop();
+      }
+    }, _callee7, null, [[0, 12]]);
+  }));
+  return function getAllSeries(_x19, _x20, _x21) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+
 // *************************************************************************
 //                               CAT_PROD_SERV
 // *************************************************************************
 
 // GET ALL PRODSERV
 var getAllProdserv = exports.getAllProdserv = /*#__PURE__*/function () {
-  var _ref7 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(req, res, next) {
-    var prodservList;
-    return _regenerator["default"].wrap(function _callee7$(_context7) {
-      while (1) switch (_context7.prev = _context7.next) {
-        case 0:
-          _context7.prev = 0;
-          _context7.next = 3;
-          return InventariosServices.getAllProdserv();
-        case 3:
-          prodservList = _context7.sent;
-          if (prodservList) {
-            _context7.next = 8;
-            break;
-          }
-          throw _boom["default"].notFound("No se encontraron productos o servicios.");
-        case 8:
-          res.status(200).json(prodservList);
-        case 9:
-          _context7.next = 14;
-          break;
-        case 11:
-          _context7.prev = 11;
-          _context7.t0 = _context7["catch"](0);
-          next(_context7.t0);
-        case 14:
-        case "end":
-          return _context7.stop();
-      }
-    }, _callee7, null, [[0, 11]]);
-  }));
-  return function getAllProdserv(_x19, _x20, _x21) {
-    return _ref7.apply(this, arguments);
-  };
-}();
-
-// GET PRODUCT PRESENTATIONS
-var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/function () {
   var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(req, res, next) {
-    var productPresentations;
+    var prodservList;
     return _regenerator["default"].wrap(function _callee8$(_context8) {
       while (1) switch (_context8.prev = _context8.next) {
         case 0:
           _context8.prev = 0;
           _context8.next = 3;
-          return InventariosServices.getProductPresentations();
+          return InventariosServices.getAllProdserv();
         case 3:
-          productPresentations = _context8.sent;
-          if (productPresentations) {
+          prodservList = _context8.sent;
+          if (prodservList) {
             _context8.next = 8;
             break;
           }
-          throw _boom["default"].notFound("No se encontraron presentaciones de productos.");
+          throw _boom["default"].notFound("No se encontraron productos o servicios.");
         case 8:
-          res.status(200).json(productPresentations);
+          res.status(200).json(prodservList);
         case 9:
           _context8.next = 14;
           break;
@@ -319,7 +320,44 @@ var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/fun
       }
     }, _callee8, null, [[0, 11]]);
   }));
-  return function getProductPresentations(_x22, _x23, _x24) {
+  return function getAllProdserv(_x22, _x23, _x24) {
     return _ref8.apply(this, arguments);
+  };
+}();
+
+// GET PRODUCT PRESENTATIONS
+var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/function () {
+  var _ref9 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9(req, res, next) {
+    var productPresentations;
+    return _regenerator["default"].wrap(function _callee9$(_context9) {
+      while (1) switch (_context9.prev = _context9.next) {
+        case 0:
+          _context9.prev = 0;
+          _context9.next = 3;
+          return InventariosServices.getProductPresentations();
+        case 3:
+          productPresentations = _context9.sent;
+          if (productPresentations) {
+            _context9.next = 8;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontraron presentaciones de productos.");
+        case 8:
+          res.status(200).json(productPresentations);
+        case 9:
+          _context9.next = 14;
+          break;
+        case 11:
+          _context9.prev = 11;
+          _context9.t0 = _context9["catch"](0);
+          next(_context9.t0);
+        case 14:
+        case "end":
+          return _context9.stop();
+      }
+    }, _callee9, null, [[0, 11]]);
+  }));
+  return function getProductPresentations(_x25, _x26, _x27) {
+    return _ref9.apply(this, arguments);
   };
 }();

@@ -101,6 +101,46 @@ export const getAllStores = async (id, selectedBusinessId) => {
   }
 };
 
+// GET ALL SERIES
+export const getAllSeries = async (
+  id,
+  selectedBusinessId,
+  selectedStoresId
+) => {
+  try {
+    const inventarioItem = await Inventarios.findById(id);
+    if (!inventarioItem) {
+      throw boom.notFound("Inventario no encontrado.");
+    }
+
+    const selectedBusiness = inventarioItem.negocios.find(
+      (negocio) => negocio.IdNegocioOK === selectedBusinessId
+    );
+
+    if (!selectedBusiness) {
+      throw boom.notFound("Negocio no encontrado.");
+    }
+
+    const selectedStore = selectedBusiness.almacenes.find(
+      (almacen) => almacen.IdAlmacenOK === selectedStoresId
+    );
+
+    if (!selectedStore) {
+      throw boom.notFound("Almacén no encontrado.");
+    }
+
+    const series = selectedStore.series.map((serie) => ({
+      Serie: serie.Serie,
+      Placa: serie.Placa,
+      Observacion: serie.Observacion,
+    }));
+
+    return series;
+  } catch (error) {
+    throw boom.internal(error);
+  }
+};
+
 // *************************************************************************
 //                               CAT_PROD_SERV
 // *************************************************************************

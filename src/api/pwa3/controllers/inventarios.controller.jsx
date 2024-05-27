@@ -91,11 +91,37 @@ export const deleteInventario = async (req, res, next) => {
 export const getAllStores = async (req, res, next) => {
   try {
     const { id, selectedBusinessId } = req.params;
-    const almacenes = await InventariosServices.getAllStores(id, selectedBusinessId);
+    const almacenes = await InventariosServices.getAllStores(
+      id,
+      selectedBusinessId
+    );
     if (!almacenes) {
-      throw boom.notFound("No se encontraron almacenes para el negocio seleccionado.");
+      throw boom.notFound(
+        "No se encontraron almacenes para el negocio seleccionado."
+      );
     } else {
       res.status(200).json(almacenes);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GET ALL SERIES
+export const getAllSeries = async (req, res, next) => {
+  try {
+    const { id, selectedBusinessId, selectedStoresId } = req.params;
+    const series = await InventariosServices.getAllSeries(
+      id,
+      selectedBusinessId,
+      selectedStoresId
+    );
+    if (!series) {
+      throw boom.notFound(
+        "No se encontraron series para el almacén seleccionado."
+      );
+    } else {
+      res.status(200).json(series);
     }
   } catch (error) {
     next(error);

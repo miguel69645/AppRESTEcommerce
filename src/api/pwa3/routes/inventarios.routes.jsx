@@ -8,6 +8,7 @@ const router = Router();
 router.get("/", InventariosController.getInventariosList);
 router.get("/:id", InventariosController.getInventario);
 router.get("/:id/:selectedBusinessId", InventariosController.getAllStores); 
+router.get("/:id/:selectedBusinessId/:selectedStoresId", InventariosController.getAllSeries); 
 // POST
 router.post("/", InventariosController.postInventario);
 // PUT

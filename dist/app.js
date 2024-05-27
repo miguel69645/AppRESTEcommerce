@@ -10,11 +10,10 @@ var _database = require("./config/database.config");
 var _morgan = _interopRequireDefault(require("morgan"));
 var _cors = _interopRequireDefault(require("cors"));
 var _config = _interopRequireDefault(require("./config/config"));
-var _index = _interopRequireDefault(require("./api/v1/routes/index"));
-var _index2 = _interopRequireDefault(require("./api/pwa/routes/index"));
-var _index3 = _interopRequireDefault(require("./api/pwa2/routes/index"));
-var _index4 = _interopRequireDefault(require("./api/pwa3/routes/index"));
-var _index5 = _interopRequireDefault(require("./api/pwa4/routes/index"));
+var _index = _interopRequireDefault(require("./api/pwa/routes/index"));
+var _index2 = _interopRequireDefault(require("./api/pwa2/routes/index"));
+var _index3 = _interopRequireDefault(require("./api/pwa3/routes/index"));
+var _index4 = _interopRequireDefault(require("./api/pwa4/routes/index"));
 //FIC: Establece la conexion a la BD
 
 //FIC: imports Swagger
@@ -23,6 +22,7 @@ var _index5 = _interopRequireDefault(require("./api/pwa4/routes/index"));
 //FIC: Config para variables de entorno
 
 // Import Routes
+// import routeAPICOM from "./api/v1/routes/index";
 
 // import routeAPIPWA5 from "./api/pwa5/routes/index";
 // import routeAPIPWA6 from "./api/pwa6/routes/index";
@@ -50,11 +50,11 @@ app.get("/DrFIC", function (req, res) {
   res.send("<h1>RESTful running in DrFIC</h1> <p> eCommerce: <b>".concat(api, "/api-docs</b> for more information.</p>"));
 });
 // Routes
+// routeAPICOM(app);
 (0, _index["default"])(app);
 (0, _index2["default"])(app);
 (0, _index3["default"])(app);
 (0, _index4["default"])(app);
-(0, _index5["default"])(app);
 // routeAPIPWA5(app);
 // routeAPIPWA6(app);
 // routeAPIPWA7(app);

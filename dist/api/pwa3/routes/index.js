@@ -4,6 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 var _express = require("express");
 var _config = _interopRequireDefault(require("../../../config/config"));
 var _inventarios = _interopRequireDefault(require("./inventarios.routes"));
+var _productos = _interopRequireDefault(require("./productos.routes"));
 //Inventarios
 
 // Import Routes
@@ -14,6 +15,7 @@ var routerAPI = function routerAPI(app) {
   app.use(api, router);
   // Routes
   router.use("/pwa3/inventarios", _inventarios["default"]);
+  router.use("/pwa3/productos", _productos["default"]);
   // Return Router
   return router;
 };

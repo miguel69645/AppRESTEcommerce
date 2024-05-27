@@ -5,7 +5,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventariosList = exports.getInventario = exports.getAllStores = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
+exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventariosList = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var InventariosServices = _interopRequireWildcard(require("../services/inventarios.services"));
@@ -359,5 +359,42 @@ var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/fun
   }));
   return function getProductPresentations(_x25, _x26, _x27) {
     return _ref9.apply(this, arguments);
+  };
+}();
+
+// GET CONCATENATED DESCRIPTION
+var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE__*/function () {
+  var _ref10 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10(req, res, next) {
+    var description;
+    return _regenerator["default"].wrap(function _callee10$(_context10) {
+      while (1) switch (_context10.prev = _context10.next) {
+        case 0:
+          _context10.prev = 0;
+          _context10.next = 3;
+          return InventariosServices.getConcatenatedDescription();
+        case 3:
+          description = _context10.sent;
+          if (description) {
+            _context10.next = 8;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontró la descripción concatenada.");
+        case 8:
+          res.status(200).json(description);
+        case 9:
+          _context10.next = 14;
+          break;
+        case 11:
+          _context10.prev = 11;
+          _context10.t0 = _context10["catch"](0);
+          next(_context10.t0);
+        case 14:
+        case "end":
+          return _context10.stop();
+      }
+    }, _callee10, null, [[0, 11]]);
+  }));
+  return function getConcatenatedDescription(_x28, _x29, _x30) {
+    return _ref10.apply(this, arguments);
   };
 }();

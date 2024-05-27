@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventarios = exports.getInventario = exports.getAllStores = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
+exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventarios = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _inventarios = require("../models/inventarios");
@@ -345,5 +345,61 @@ var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/fun
   }));
   return function getProductPresentations() {
     return _ref9.apply(this, arguments);
+  };
+}();
+
+// GET CONCATENATED DESCRIPTION
+var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE__*/function () {
+  var _ref10 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10() {
+    var result;
+    return _regenerator["default"].wrap(function _callee10$(_context10) {
+      while (1) switch (_context10.prev = _context10.next) {
+        case 0:
+          _context10.prev = 0;
+          _context10.next = 3;
+          return _inventarios.Inventarios.aggregate([{
+            $lookup: {
+              from: "cat_prod_serv",
+              localField: "IdProdServOK",
+              foreignField: "IdProdServOK",
+              as: "prod_serv"
+            }
+          }, {
+            $unwind: "$prod_serv"
+          }, {
+            $unwind: "$prod_serv.presentaciones"
+          }, {
+            $match: {
+              $expr: {
+                $eq: ["$IdPresentaOK", "$prod_serv.presentaciones.IdPresentaOK"]
+              }
+            }
+          }, {
+            $addFields: {
+              DescripcionConcatenada: {
+                $concat: ["$prod_serv.DesProdServ", " - ", "$prod_serv.presentaciones.DesPresenta"]
+              }
+            }
+          }, {
+            $project: {
+              _id: 0,
+              DescripcionConcatenada: 1
+            }
+          }]);
+        case 3:
+          result = _context10.sent;
+          return _context10.abrupt("return", result);
+        case 7:
+          _context10.prev = 7;
+          _context10.t0 = _context10["catch"](0);
+          throw _boom["default"].internal(_context10.t0);
+        case 10:
+        case "end":
+          return _context10.stop();
+      }
+    }, _callee10, null, [[0, 7]]);
+  }));
+  return function getConcatenatedDescription() {
+    return _ref10.apply(this, arguments);
   };
 }();

@@ -160,3 +160,17 @@ export const getProductPresentations = async (req, res, next) => {
     next(error);
   }
 };
+
+// GET CONCATENATED DESCRIPTION
+export const getConcatenatedDescription = async (req, res, next) => {
+  try {
+    const description = await InventariosServices.getConcatenatedDescription();
+    if (!description) {
+      throw boom.notFound("No se encontró la descripción concatenada.");
+    } else {
+      res.status(200).json(description);
+    }
+  } catch (error) {
+    next(error);
+  }
+};

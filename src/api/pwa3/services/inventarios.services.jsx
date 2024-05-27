@@ -177,3 +177,48 @@ export const getProductPresentations = async () => {
     throw boom.internal(error);
   }
 };
+
+// GET CONCATENATED DESCRIPTION
+export const getConcatenatedDescription = async () => {
+  try {
+    const result = await Inventarios.aggregate([
+      {
+        $lookup: {
+          from: "cat_prod_serv",
+          localField: "IdProdServOK",
+          foreignField: "IdProdServOK",
+          as: "prod_serv",
+        },
+      },
+      { $unwind: "$prod_serv" },
+      { $unwind: "$prod_serv.presentaciones" },
+      {
+        $match: {
+          $expr: {
+            $eq: ["$IdPresentaOK", "$prod_serv.presentaciones.IdPresentaOK"],
+          },
+        },
+      },
+      {
+        $addFields: {
+          DescripcionConcatenada: {
+            $concat: [
+              "$prod_serv.DesProdServ",
+              " - ",
+              "$prod_serv.presentaciones.DesPresenta",
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          DescripcionConcatenada: 1,
+        },
+      },
+    ]);
+    return result;
+  } catch (error) {
+    throw boom.internal(error);
+  }
+};

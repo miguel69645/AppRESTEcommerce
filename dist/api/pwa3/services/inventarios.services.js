@@ -4,8 +4,9 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventarios = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
+exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventarios = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllStatus = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _inventarios = require("../models/inventarios");
 var _boom = _interopRequireDefault(require("@hapi/boom"));
@@ -278,47 +279,129 @@ var getAllSeries = exports.getAllSeries = /*#__PURE__*/function () {
   };
 }();
 
+// GET ALL STATUS
+var getAllStatus = exports.getAllStatus = /*#__PURE__*/function () {
+  var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(id, selectedBusinessId, selectedStoresId, selectedSeriesId) {
+    var inventarioItem, selectedBusiness, selectedStore, selectedSeries, status, location;
+    return _regenerator["default"].wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
+        case 0:
+          _context8.prev = 0;
+          _context8.next = 3;
+          return _inventarios.Inventarios.findById(id);
+        case 3:
+          inventarioItem = _context8.sent;
+          if (inventarioItem) {
+            _context8.next = 6;
+            break;
+          }
+          throw _boom["default"].notFound("Inventario no encontrado.");
+        case 6:
+          selectedBusiness = inventarioItem.negocios.find(function (negocio) {
+            return negocio.IdNegocioOK === selectedBusinessId;
+          });
+          if (selectedBusiness) {
+            _context8.next = 9;
+            break;
+          }
+          throw _boom["default"].notFound("Negocio no encontrado.");
+        case 9:
+          selectedStore = selectedBusiness.almacenes.find(function (almacen) {
+            return almacen.IdAlmacenOK === selectedStoresId;
+          });
+          if (selectedStore) {
+            _context8.next = 12;
+            break;
+          }
+          throw _boom["default"].notFound("Almacén no encontrado.");
+        case 12:
+          selectedSeries = selectedStore.series.find(function (serie) {
+            return serie.Serie === selectedSeriesId;
+          });
+          if (selectedSeries) {
+            _context8.next = 15;
+            break;
+          }
+          throw _boom["default"].notFound("Serie no encontrada.");
+        case 15:
+          status = [].concat((0, _toConsumableArray2["default"])(selectedSeries.estatus_venta.map(function (status) {
+            return {
+              IdTipoEstatusOK: status.IdTipoEstatusOK,
+              Actual: status.Actual
+            };
+          })), (0, _toConsumableArray2["default"])(selectedSeries.estatus_fisico.map(function (status) {
+            return {
+              IdTipoEstatusOK: status.IdTipoEstatusOK,
+              Actual: status.Actual
+            };
+          })));
+          location = [selectedSeries.ubicaciones.map(function (location) {
+            return {
+              IdAlmacenOK: location.IdAlmacenOK,
+              Ubicacion: location.Ubicacion,
+              Actual: location.Actual
+            };
+          })];
+          return _context8.abrupt("return", {
+            status: status,
+            location: location
+          });
+        case 20:
+          _context8.prev = 20;
+          _context8.t0 = _context8["catch"](0);
+          throw _boom["default"].internal(_context8.t0);
+        case 23:
+        case "end":
+          return _context8.stop();
+      }
+    }, _callee8, null, [[0, 20]]);
+  }));
+  return function getAllStatus(_x11, _x12, _x13, _x14) {
+    return _ref8.apply(this, arguments);
+  };
+}();
+
 // *************************************************************************
 //                               CAT_PROD_SERV
 // *************************************************************************
 
 // GET ALL PRODSERV
 var getAllProdserv = exports.getAllProdserv = /*#__PURE__*/function () {
-  var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8() {
-    var prodservList;
-    return _regenerator["default"].wrap(function _callee8$(_context8) {
-      while (1) switch (_context8.prev = _context8.next) {
-        case 0:
-          _context8.prev = 0;
-          _context8.next = 3;
-          return _inventarios.Prodserv.find();
-        case 3:
-          prodservList = _context8.sent;
-          return _context8.abrupt("return", prodservList);
-        case 7:
-          _context8.prev = 7;
-          _context8.t0 = _context8["catch"](0);
-          throw _boom["default"].internal(_context8.t0);
-        case 10:
-        case "end":
-          return _context8.stop();
-      }
-    }, _callee8, null, [[0, 7]]);
-  }));
-  return function getAllProdserv() {
-    return _ref8.apply(this, arguments);
-  };
-}();
-
-// GET PRODUCT PRESENTATIONS
-var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/function () {
   var _ref9 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9() {
-    var productPresentations;
+    var prodservList;
     return _regenerator["default"].wrap(function _callee9$(_context9) {
       while (1) switch (_context9.prev = _context9.next) {
         case 0:
           _context9.prev = 0;
           _context9.next = 3;
+          return _inventarios.Prodserv.find();
+        case 3:
+          prodservList = _context9.sent;
+          return _context9.abrupt("return", prodservList);
+        case 7:
+          _context9.prev = 7;
+          _context9.t0 = _context9["catch"](0);
+          throw _boom["default"].internal(_context9.t0);
+        case 10:
+        case "end":
+          return _context9.stop();
+      }
+    }, _callee9, null, [[0, 7]]);
+  }));
+  return function getAllProdserv() {
+    return _ref9.apply(this, arguments);
+  };
+}();
+
+// GET PRODUCT PRESENTATIONS
+var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/function () {
+  var _ref10 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10() {
+    var productPresentations;
+    return _regenerator["default"].wrap(function _callee10$(_context10) {
+      while (1) switch (_context10.prev = _context10.next) {
+        case 0:
+          _context10.prev = 0;
+          _context10.next = 3;
           return _inventarios.Prodserv.aggregate([{
             $unwind: "$presentaciones"
           }, {
@@ -331,32 +414,32 @@ var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/fun
             }
           }]);
         case 3:
-          productPresentations = _context9.sent;
-          return _context9.abrupt("return", productPresentations);
+          productPresentations = _context10.sent;
+          return _context10.abrupt("return", productPresentations);
         case 7:
-          _context9.prev = 7;
-          _context9.t0 = _context9["catch"](0);
-          throw _boom["default"].internal(_context9.t0);
+          _context10.prev = 7;
+          _context10.t0 = _context10["catch"](0);
+          throw _boom["default"].internal(_context10.t0);
         case 10:
         case "end":
-          return _context9.stop();
+          return _context10.stop();
       }
-    }, _callee9, null, [[0, 7]]);
+    }, _callee10, null, [[0, 7]]);
   }));
   return function getProductPresentations() {
-    return _ref9.apply(this, arguments);
+    return _ref10.apply(this, arguments);
   };
 }();
 
 // GET CONCATENATED DESCRIPTION
 var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE__*/function () {
-  var _ref10 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10() {
+  var _ref11 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee11() {
     var result;
-    return _regenerator["default"].wrap(function _callee10$(_context10) {
-      while (1) switch (_context10.prev = _context10.next) {
+    return _regenerator["default"].wrap(function _callee11$(_context11) {
+      while (1) switch (_context11.prev = _context11.next) {
         case 0:
-          _context10.prev = 0;
-          _context10.next = 3;
+          _context11.prev = 0;
+          _context11.next = 3;
           return _inventarios.Inventarios.aggregate([{
             $lookup: {
               from: "cat_prod_serv",
@@ -387,19 +470,19 @@ var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE_
             }
           }]);
         case 3:
-          result = _context10.sent;
-          return _context10.abrupt("return", result);
+          result = _context11.sent;
+          return _context11.abrupt("return", result);
         case 7:
-          _context10.prev = 7;
-          _context10.t0 = _context10["catch"](0);
-          throw _boom["default"].internal(_context10.t0);
+          _context11.prev = 7;
+          _context11.t0 = _context11["catch"](0);
+          throw _boom["default"].internal(_context11.t0);
         case 10:
         case "end":
-          return _context10.stop();
+          return _context11.stop();
       }
-    }, _callee10, null, [[0, 7]]);
+    }, _callee11, null, [[0, 7]]);
   }));
   return function getConcatenatedDescription() {
-    return _ref10.apply(this, arguments);
+    return _ref11.apply(this, arguments);
   };
 }();

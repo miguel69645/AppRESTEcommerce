@@ -5,7 +5,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventariosList = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
+exports.putInventarioItem = exports.postInventario = exports.getProductPresentations = exports.getInventariosList = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllStatus = exports.getAllSeries = exports.getAllProdserv = exports.deleteInventario = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var InventariosServices = _interopRequireWildcard(require("../services/inventarios.services"));
@@ -284,66 +284,67 @@ var getAllSeries = exports.getAllSeries = /*#__PURE__*/function () {
   };
 }();
 
+// GET ALL STATUS
+var getAllStatus = exports.getAllStatus = /*#__PURE__*/function () {
+  var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(req, res, next) {
+    var _req$params3, id, selectedBusinessId, selectedStoresId, selectedSeriesId, status;
+    return _regenerator["default"].wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
+        case 0:
+          _context8.prev = 0;
+          _req$params3 = req.params, id = _req$params3.id, selectedBusinessId = _req$params3.selectedBusinessId, selectedStoresId = _req$params3.selectedStoresId, selectedSeriesId = _req$params3.selectedSeriesId;
+          _context8.next = 4;
+          return InventariosServices.getAllStatus(id, selectedBusinessId, selectedStoresId, selectedSeriesId);
+        case 4:
+          status = _context8.sent;
+          if (status) {
+            _context8.next = 9;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontraron estados para la serie seleccionada.");
+        case 9:
+          res.status(200).json(status);
+        case 10:
+          _context8.next = 15;
+          break;
+        case 12:
+          _context8.prev = 12;
+          _context8.t0 = _context8["catch"](0);
+          next(_context8.t0);
+        case 15:
+        case "end":
+          return _context8.stop();
+      }
+    }, _callee8, null, [[0, 12]]);
+  }));
+  return function getAllStatus(_x22, _x23, _x24) {
+    return _ref8.apply(this, arguments);
+  };
+}();
+
 // *************************************************************************
 //                               CAT_PROD_SERV
 // *************************************************************************
 
 // GET ALL PRODSERV
 var getAllProdserv = exports.getAllProdserv = /*#__PURE__*/function () {
-  var _ref8 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(req, res, next) {
-    var prodservList;
-    return _regenerator["default"].wrap(function _callee8$(_context8) {
-      while (1) switch (_context8.prev = _context8.next) {
-        case 0:
-          _context8.prev = 0;
-          _context8.next = 3;
-          return InventariosServices.getAllProdserv();
-        case 3:
-          prodservList = _context8.sent;
-          if (prodservList) {
-            _context8.next = 8;
-            break;
-          }
-          throw _boom["default"].notFound("No se encontraron productos o servicios.");
-        case 8:
-          res.status(200).json(prodservList);
-        case 9:
-          _context8.next = 14;
-          break;
-        case 11:
-          _context8.prev = 11;
-          _context8.t0 = _context8["catch"](0);
-          next(_context8.t0);
-        case 14:
-        case "end":
-          return _context8.stop();
-      }
-    }, _callee8, null, [[0, 11]]);
-  }));
-  return function getAllProdserv(_x22, _x23, _x24) {
-    return _ref8.apply(this, arguments);
-  };
-}();
-
-// GET PRODUCT PRESENTATIONS
-var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/function () {
   var _ref9 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9(req, res, next) {
-    var productPresentations;
+    var prodservList;
     return _regenerator["default"].wrap(function _callee9$(_context9) {
       while (1) switch (_context9.prev = _context9.next) {
         case 0:
           _context9.prev = 0;
           _context9.next = 3;
-          return InventariosServices.getProductPresentations();
+          return InventariosServices.getAllProdserv();
         case 3:
-          productPresentations = _context9.sent;
-          if (productPresentations) {
+          prodservList = _context9.sent;
+          if (prodservList) {
             _context9.next = 8;
             break;
           }
-          throw _boom["default"].notFound("No se encontraron presentaciones de productos.");
+          throw _boom["default"].notFound("No se encontraron productos o servicios.");
         case 8:
-          res.status(200).json(productPresentations);
+          res.status(200).json(prodservList);
         case 9:
           _context9.next = 14;
           break;
@@ -357,30 +358,30 @@ var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/fun
       }
     }, _callee9, null, [[0, 11]]);
   }));
-  return function getProductPresentations(_x25, _x26, _x27) {
+  return function getAllProdserv(_x25, _x26, _x27) {
     return _ref9.apply(this, arguments);
   };
 }();
 
-// GET CONCATENATED DESCRIPTION
-var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE__*/function () {
+// GET PRODUCT PRESENTATIONS
+var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/function () {
   var _ref10 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10(req, res, next) {
-    var description;
+    var productPresentations;
     return _regenerator["default"].wrap(function _callee10$(_context10) {
       while (1) switch (_context10.prev = _context10.next) {
         case 0:
           _context10.prev = 0;
           _context10.next = 3;
-          return InventariosServices.getConcatenatedDescription();
+          return InventariosServices.getProductPresentations();
         case 3:
-          description = _context10.sent;
-          if (description) {
+          productPresentations = _context10.sent;
+          if (productPresentations) {
             _context10.next = 8;
             break;
           }
-          throw _boom["default"].notFound("No se encontró la descripción concatenada.");
+          throw _boom["default"].notFound("No se encontraron presentaciones de productos.");
         case 8:
-          res.status(200).json(description);
+          res.status(200).json(productPresentations);
         case 9:
           _context10.next = 14;
           break;
@@ -394,7 +395,44 @@ var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE_
       }
     }, _callee10, null, [[0, 11]]);
   }));
-  return function getConcatenatedDescription(_x28, _x29, _x30) {
+  return function getProductPresentations(_x28, _x29, _x30) {
     return _ref10.apply(this, arguments);
+  };
+}();
+
+// GET CONCATENATED DESCRIPTION
+var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE__*/function () {
+  var _ref11 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee11(req, res, next) {
+    var description;
+    return _regenerator["default"].wrap(function _callee11$(_context11) {
+      while (1) switch (_context11.prev = _context11.next) {
+        case 0:
+          _context11.prev = 0;
+          _context11.next = 3;
+          return InventariosServices.getConcatenatedDescription();
+        case 3:
+          description = _context11.sent;
+          if (description) {
+            _context11.next = 8;
+            break;
+          }
+          throw _boom["default"].notFound("No se encontró la descripción concatenada.");
+        case 8:
+          res.status(200).json(description);
+        case 9:
+          _context11.next = 14;
+          break;
+        case 11:
+          _context11.prev = 11;
+          _context11.t0 = _context11["catch"](0);
+          next(_context11.t0);
+        case 14:
+        case "end":
+          return _context11.stop();
+      }
+    }, _callee11, null, [[0, 11]]);
+  }));
+  return function getConcatenatedDescription(_x31, _x32, _x33) {
+    return _ref11.apply(this, arguments);
   };
 }();

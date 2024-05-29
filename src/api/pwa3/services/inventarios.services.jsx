@@ -141,6 +141,68 @@ export const getAllSeries = async (
   }
 };
 
+// GET ALL STATUS
+export const getAllStatus = async (
+  id,
+  selectedBusinessId,
+  selectedStoresId,
+  selectedSeriesId
+) => {
+  try {
+    const inventarioItem = await Inventarios.findById(id);
+    if (!inventarioItem) {
+      throw boom.notFound("Inventario no encontrado.");
+    }
+
+    const selectedBusiness = inventarioItem.negocios.find(
+      (negocio) => negocio.IdNegocioOK === selectedBusinessId
+    );
+
+    if (!selectedBusiness) {
+      throw boom.notFound("Negocio no encontrado.");
+    }
+
+    const selectedStore = selectedBusiness.almacenes.find(
+      (almacen) => almacen.IdAlmacenOK === selectedStoresId
+    );
+
+    if (!selectedStore) {
+      throw boom.notFound("Almacén no encontrado.");
+    }
+
+    const selectedSeries = selectedStore.series.find(
+      (serie) => serie.Serie === selectedSeriesId
+    );
+
+    if (!selectedSeries) {
+      throw boom.notFound("Serie no encontrada.");
+    }
+
+    const status = [
+      ...selectedSeries.estatus_venta.map((status) => ({
+        IdTipoEstatusOK: status.IdTipoEstatusOK,
+        Actual: status.Actual,
+      })),
+      ...selectedSeries.estatus_fisico.map((status) => ({
+        IdTipoEstatusOK: status.IdTipoEstatusOK,
+        Actual: status.Actual,
+      })),
+    ];
+
+    const location = [
+      selectedSeries.ubicaciones.map((location) => ({
+        IdAlmacenOK: location.IdAlmacenOK,
+        Ubicacion: location.Ubicacion,
+        Actual: location.Actual,
+      })),
+    ];
+
+    return { status, location };
+  } catch (error) {
+    throw boom.internal(error);
+  }
+};
+
 // *************************************************************************
 //                               CAT_PROD_SERV
 // *************************************************************************

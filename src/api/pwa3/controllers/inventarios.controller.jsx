@@ -128,6 +128,29 @@ export const getAllSeries = async (req, res, next) => {
   }
 };
 
+// GET ALL STATUS
+export const getAllStatus = async (req, res, next) => {
+  try {
+    const { id, selectedBusinessId, selectedStoresId, selectedSeriesId } =
+      req.params;
+    const status = await InventariosServices.getAllStatus(
+      id,
+      selectedBusinessId,
+      selectedStoresId,
+      selectedSeriesId
+    );
+    if (!status) {
+      throw boom.notFound(
+        "No se encontraron estados para la serie seleccionada."
+      );
+    } else {
+      res.status(200).json(status);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 // *************************************************************************
 //                               CAT_PROD_SERV
 // *************************************************************************

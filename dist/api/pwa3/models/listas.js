@@ -13,6 +13,10 @@ var listasSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  Instituto: {
+    type: String,
+    required: true
+  },
   IdListaOK: {
     type: String,
     required: true
@@ -55,6 +59,10 @@ var listasSchema = new mongoose.Schema({
       required: true
     },
     IdPresentaOK: {
+      type: String,
+      required: true
+    },
+    PresentacionDelProducto: {
       type: String,
       required: true
     },
@@ -108,11 +116,11 @@ var listasSchema = new mongoose.Schema({
     }]
   }],
   promociones: [{
-    DesPromo: {
+    IdTipoPromoOK: {
       type: String,
       required: true
     },
-    IdTipoPromoOK: {
+    DesPromo: {
       type: String,
       required: true
     },

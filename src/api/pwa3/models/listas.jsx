@@ -2,6 +2,7 @@ import * as mongoose from "mongoose";
 
 const listasSchema = new mongoose.Schema({
   IdInstitutoOK: { type: String, required: true },
+  Instituto: { type: String, required: true },
   IdListaOK: { type: String, required: true },
   IdListaBK: { type: String, required: true },
   DesLista: { type: String, required: true },
@@ -15,6 +16,7 @@ const listasSchema = new mongoose.Schema({
     {
       IdProdServOK: { type: String, required: true },
       IdPresentaOK: { type: String, required: true },
+      PresentacionDelProducto: { type: String, required: true },
       IdTipoFormulaOK: { type: String, required: true },
       Formula: { type: String, required: true },
       Precio: { type: Number, required: true },
@@ -38,8 +40,8 @@ const listasSchema = new mongoose.Schema({
   ],
   promociones: [
     {
-      DesPromo: { type: String, required: true },
       IdTipoPromoOK: { type: String, required: true },
+      DesPromo: { type: String, required: true },
       Formula: { type: String, required: true },
       FechaExpiraIni: { type: Date, required: true },
       FechaExpiraFin: { type: Date, required: true },

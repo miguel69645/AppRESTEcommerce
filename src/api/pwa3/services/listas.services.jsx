@@ -16,29 +16,17 @@ export const getListas = async () => {
 export const getLista = async (id) => {
   let listaItem;
   try {
-    listaItem = await Listas.findOne({
-      IdInstitutoOK: id,
-    });
+    listaItem = await Listas.findById(id);
     return listaItem;
   } catch (error) {
     throw boom.internal(error);
   }
 };
 
-// POST (ADD) LISTA
-export const postLista = async (paListaItem) => {
-  try {
-    const newListaItem = new Listas(paListaItem);
-    return await newListaItem.save();
-  } catch (error) {
-    throw error;
-  }
-};
-
 // PUT (MODIFY) LISTA
 export const putListaItem = async (id, paListaItem) => {
   try {
-    return await Listas.findOneAndUpdate({ IdInstitutoOK: id }, paListaItem, {
+    return await Listas.findByIdAndUpdate(id, paListaItem, {
       new: true,
     });
   } catch (error) {
@@ -49,9 +37,7 @@ export const putListaItem = async (id, paListaItem) => {
 // DELETE LISTA BY ID
 export const deleteLista = async (id) => {
   try {
-    const deletedLista = await Listas.findOneAndDelete({
-      IdInstitutoOK: id,
-    });
+    const deletedLista = await Listas.findByIdAndDelete(id);
     if (!deletedLista) {
       throw boom.badRequest("No se pudo eliminar la Lista.");
     }

@@ -7,10 +7,12 @@ const inventariosSchema = new mongoose.Schema({
   negocios: [
     {
       IdNegocioOK: { type: String, required: true },
+      descripcionNegocio: { type: String, required: true },
       ControlaSerie: { type: String, required: true },
       almacenes: [
         {
           IdAlmacenOK: { type: String, required: true },
+          Descripcion: { type: String, required: true },
           Principal: { type: String, required: true },
           CantidadActual: { type: Number, required: true },
           CantidadDisponible: { type: Number, required: true },
@@ -54,20 +56,20 @@ const inventariosSchema = new mongoose.Schema({
 });
 
 const prodservSchema = new mongoose.Schema({
-  IdInstitutoOK: {type: String},
-  IdProdServOK: {type: String},
-  IdProdServBK: {type: String},
-  CodigoBarras: {type: String},
-  DesProdServ: {type: String},
-  Indice: {type: String},
+  IdInstitutoOK: { type: String },
+  IdProdServOK: { type: String },
+  IdProdServBK: { type: String },
+  CodigoBarras: { type: String },
+  DesProdServ: { type: String },
+  Indice: { type: String },
   presentaciones: [
     {
-      IdPresentaOK: {type: String},
-      IdPresentaBK: {type: String},
-      CodigoBarras: {type: String},
-      DesPresenta: {type: String},
-      Indice: {type: String},
-      Principal: {type: String},
+      IdPresentaOK: { type: String },
+      IdPresentaBK: { type: String },
+      CodigoBarras: { type: String },
+      DesPresenta: { type: String },
+      Indice: { type: String },
+      Principal: { type: String },
     },
   ],
 });

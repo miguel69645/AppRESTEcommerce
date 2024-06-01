@@ -26,12 +26,20 @@ var inventariosSchema = new mongoose.Schema({
       type: String,
       required: true
     },
+    descripcionNegocio: {
+      type: String,
+      required: true
+    },
     ControlaSerie: {
       type: String,
       required: true
     },
     almacenes: [{
       IdAlmacenOK: {
+        type: String,
+        required: true
+      },
+      Descripcion: {
         type: String,
         required: true
       },

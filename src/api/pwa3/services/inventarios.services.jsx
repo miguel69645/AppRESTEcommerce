@@ -781,29 +781,6 @@ export const getAllProdserv = async () => {
   }
 };
 
-// GET PRODUCT PRESENTATIONS
-export const getProductPresentations = async () => {
-  try {
-    const productPresentations = await Prodserv.aggregate([
-      {
-        $unwind: "$presentaciones",
-      },
-      {
-        $project: {
-          idProducto: "$IdProdServOK",
-          idPresentacion: "$presentaciones.IdPresentaOK",
-          descripcionDePresentacion: {
-            $concat: ["$DesProdServ", " - ", "$presentaciones.DesPresenta"],
-          },
-        },
-      },
-    ]);
-    return productPresentations;
-  } catch (error) {
-    throw boom.internal(error);
-  }
-};
-
 // GET CONCATENATED DESCRIPTION
 export const getConcatenatedDescription = async () => {
   try {

@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.putUbicacion = exports.putSerie = exports.putNegocio = exports.putInventarioItem = exports.putEstatusVenta = exports.putEstatusFisico = exports.putAlmacen = exports.postUbicacion = exports.postSerie = exports.postNegocio = exports.postInventario = exports.postEstatusVenta = exports.postEstatusFisico = exports.postAlmacen = exports.getProductPresentations = exports.getInventarios = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllStatus = exports.getAllSeries = exports.getAllProdserv = exports.deleteUbicacion = exports.deleteSerie = exports.deleteNegocio = exports.deleteInventario = exports.deleteEstatusVenta = exports.deleteEstatusFisico = exports.deleteAlmacen = void 0;
+exports.putUbicacion = exports.putSerie = exports.putNegocio = exports.putInventarioItem = exports.putEstatusVenta = exports.putEstatusFisico = exports.putAlmacen = exports.postUbicacion = exports.postSerie = exports.postNegocio = exports.postInventario = exports.postEstatusVenta = exports.postEstatusFisico = exports.postAlmacen = exports.getInventarios = exports.getInventario = exports.getConcatenatedDescription = exports.getAllStores = exports.getAllStatus = exports.getAllSeries = exports.getAllProdserv = exports.deleteUbicacion = exports.deleteSerie = exports.deleteNegocio = exports.deleteInventario = exports.deleteEstatusVenta = exports.deleteEstatusFisico = exports.deleteAlmacen = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
@@ -1252,53 +1252,15 @@ var getAllProdserv = exports.getAllProdserv = /*#__PURE__*/function () {
   };
 }();
 
-// GET PRODUCT PRESENTATIONS
-var getProductPresentations = exports.getProductPresentations = /*#__PURE__*/function () {
+// GET CONCATENATED DESCRIPTION
+var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE__*/function () {
   var _ref28 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee28() {
-    var productPresentations;
+    var result;
     return _regenerator["default"].wrap(function _callee28$(_context28) {
       while (1) switch (_context28.prev = _context28.next) {
         case 0:
           _context28.prev = 0;
           _context28.next = 3;
-          return _inventarios.Prodserv.aggregate([{
-            $unwind: "$presentaciones"
-          }, {
-            $project: {
-              idProducto: "$IdProdServOK",
-              idPresentacion: "$presentaciones.IdPresentaOK",
-              descripcionDePresentacion: {
-                $concat: ["$DesProdServ", " - ", "$presentaciones.DesPresenta"]
-              }
-            }
-          }]);
-        case 3:
-          productPresentations = _context28.sent;
-          return _context28.abrupt("return", productPresentations);
-        case 7:
-          _context28.prev = 7;
-          _context28.t0 = _context28["catch"](0);
-          throw _boom["default"].internal(_context28.t0);
-        case 10:
-        case "end":
-          return _context28.stop();
-      }
-    }, _callee28, null, [[0, 7]]);
-  }));
-  return function getProductPresentations() {
-    return _ref28.apply(this, arguments);
-  };
-}();
-
-// GET CONCATENATED DESCRIPTION
-var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE__*/function () {
-  var _ref29 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee29() {
-    var result;
-    return _regenerator["default"].wrap(function _callee29$(_context29) {
-      while (1) switch (_context29.prev = _context29.next) {
-        case 0:
-          _context29.prev = 0;
-          _context29.next = 3;
           return _inventarios.Inventarios.aggregate([{
             $lookup: {
               from: "cat_prod_serv",
@@ -1329,19 +1291,19 @@ var getConcatenatedDescription = exports.getConcatenatedDescription = /*#__PURE_
             }
           }]);
         case 3:
-          result = _context29.sent;
-          return _context29.abrupt("return", result);
+          result = _context28.sent;
+          return _context28.abrupt("return", result);
         case 7:
-          _context29.prev = 7;
-          _context29.t0 = _context29["catch"](0);
-          throw _boom["default"].internal(_context29.t0);
+          _context28.prev = 7;
+          _context28.t0 = _context28["catch"](0);
+          throw _boom["default"].internal(_context28.t0);
         case 10:
         case "end":
-          return _context29.stop();
+          return _context28.stop();
       }
-    }, _callee29, null, [[0, 7]]);
+    }, _callee28, null, [[0, 7]]);
   }));
   return function getConcatenatedDescription() {
-    return _ref29.apply(this, arguments);
+    return _ref28.apply(this, arguments);
   };
 }();

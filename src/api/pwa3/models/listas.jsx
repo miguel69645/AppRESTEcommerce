@@ -32,7 +32,7 @@ const listasSchema = new mongoose.Schema({
         {
           IdTipoCondicionOK: { type: String, required: true },
           IdTipoOperadorOK: { type: String, required: true },
-          Valor: { type: [String], required: true },
+          Valor: { type: String, required: true },
           Secuecia: { type: Number, required: true },
         },
       ],
@@ -49,9 +49,9 @@ const listasSchema = new mongoose.Schema({
         {
           IdEtiquetaOK: { type: String, required: true },
           Etiqueta: { type: String, required: true },
-          valores: [
+          Valores: [
             {
-              Valor: { type: String, required: true },
+              valor: { type: String, required: true },
               IdComparaValor: { type: String, required: true },
             },
           ],

@@ -106,7 +106,7 @@ var listasSchema = new mongoose.Schema({
         required: true
       },
       Valor: {
-        type: [String],
+        type: String,
         required: true
       },
       Secuecia: {
@@ -145,8 +145,8 @@ var listasSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      valores: [{
-        Valor: {
+      Valores: [{
+        valor: {
           type: String,
           required: true
         },

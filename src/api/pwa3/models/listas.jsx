@@ -14,12 +14,12 @@ const listasSchema = new mongoose.Schema({
   IdTipoFormulaOK: { type: String, required: true },
   precios: [
     {
-      IdProdServOK: { type: String, required: true },
-      IdPresentaOK: { type: String, required: true },
-      PresentacionDelProducto: { type: String, required: true },
-      IdTipoFormulaOK: { type: String, required: true },
-      Formula: { type: String, required: true },
-      Precio: { type: Number, required: true },
+      IdProdServOK: { type: String },
+      IdPresentaOK: { type: String },
+      PresentacionDelProducto: { type: String },
+      IdTipoFormulaOK: { type: String },
+      Formula: { type: String },
+      Precio: { type: Number },
     },
   ],
   roles: [

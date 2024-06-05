@@ -816,6 +816,10 @@ export const getConcatenatedDescription = async () => {
       {
         $project: {
           _id: 0,
+          IdProdServOK: "$IdProdServOK",
+          DesProdServ: "$prod_serv.DesProdServ",
+          IdPresentaOK: "$prod_serv.presentaciones.IdPresentaOK",
+          DesPresenta: "$prod_serv.presentaciones.DesPresenta",
           DescripcionConcatenada: 1,
         },
       },

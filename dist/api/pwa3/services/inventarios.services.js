@@ -235,19 +235,22 @@ var getAllStatus = exports.getAllStatus = /*#__PURE__*/function () {
           status = [].concat((0, _toConsumableArray2["default"])(selectedSeries.estatus_venta.map(function (status) {
             return {
               IdTipoEstatusOK: status.IdTipoEstatusOK,
-              Actual: status.Actual
+              Actual: status.Actual,
+              Observacion: status.Observacion
             };
           })), (0, _toConsumableArray2["default"])(selectedSeries.estatus_fisico.map(function (status) {
             return {
               IdTipoEstatusOK: status.IdTipoEstatusOK,
-              Actual: status.Actual
+              Actual: status.Actual,
+              Observacion: status.Observacion
             };
           })));
           location = [selectedSeries.ubicaciones.map(function (location) {
             return {
               IdAlmacenOK: location.IdAlmacenOK,
               Ubicacion: location.Ubicacion,
-              Actual: location.Actual
+              Actual: location.Actual,
+              Observacion: location.Observacion
             };
           })];
           return _context5.abrupt("return", {

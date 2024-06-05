@@ -143,10 +143,12 @@ export const getAllStatus = async (
       ...selectedSeries.estatus_venta.map((status) => ({
         IdTipoEstatusOK: status.IdTipoEstatusOK,
         Actual: status.Actual,
+        Observacion: status.Observacion,
       })),
       ...selectedSeries.estatus_fisico.map((status) => ({
         IdTipoEstatusOK: status.IdTipoEstatusOK,
         Actual: status.Actual,
+        Observacion: status.Observacion,
       })),
     ];
 
@@ -155,6 +157,7 @@ export const getAllStatus = async (
         IdAlmacenOK: location.IdAlmacenOK,
         Ubicacion: location.Ubicacion,
         Actual: location.Actual,
+        Observacion: location.Observacion,
       })),
     ];
 

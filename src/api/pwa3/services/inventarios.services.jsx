@@ -157,7 +157,6 @@ export const getAllStatus = async (
         IdAlmacenOK: location.IdAlmacenOK,
         Ubicacion: location.Ubicacion,
         Actual: location.Actual,
-        Observacion: location.Observacion,
       })),
     ];
 

@@ -8,7 +8,7 @@ const routerAPI = (app) => {
   const api = config.API_URL;
   app.use(api, router);
   // Routes
-  router.use("/pwa2/labels", labelsRoutes);
+  router.use("/pwa2/promo", labelsRoutes);
   // Return Router
   return router;
 };

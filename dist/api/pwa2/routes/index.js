@@ -13,7 +13,7 @@ var routerAPI = function routerAPI(app) {
   var api = _config["default"].API_URL;
   app.use(api, router);
   // Routes
-  router.use("/pwa2/labels", _labels["default"]);
+  router.use("/pwa2/promo", _labels["default"]);
   // Return Router
   return router;
 };

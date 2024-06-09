@@ -333,6 +333,12 @@ var getCondicionesByPromo = exports.getCondicionesByPromo = /*#__PURE__*/functio
             return {
               IdEtiquetaOK: cond.IdEtiquetaOK,
               Etiqueta: cond.Etiqueta,
+              Valores: cond.Valores.map(function (val) {
+                return {
+                  valor: val.valor,
+                  IdComparaValor: val.IdComparaValor
+                };
+              }),
               IdOpComparaValores: cond.IdOpComparaValores,
               IdOpLogicoEtiqueta: cond.IdOpLogicoEtiqueta
             };

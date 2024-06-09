@@ -1,16 +1,16 @@
-import * as InstitutoServices from "../services/institutos.service";
+import * as CondicionesServices from "../services/institutos.service";
 import boom from "@hapi/boom";
 
 //FIC: API GET
 //----------------------------------------
 //FIC: Todos los Institutos.
-export const getInstitutosList = async (req, res, next) => {
+export const getCondicionesList = async (req, res, next) => {
   try {
-    const institutosList = await InstitutoServices.getInstitutos();
-    if (!institutosList) {
-      throw boom.notFound("No se encontraron institutos registrados.");
-    } else if (institutosList) {
-      res.status(200).json(institutosList);
+    const condicionesList = await CondicionesServices.getCondiciones();
+    if (!condicionesList) {
+      throw boom.notFound("No se encontraron condiciones registrados.");
+    } else if (condicionesList) {
+      res.status(200).json(condicionesList);
     }
   } catch (error) {
     next(error);

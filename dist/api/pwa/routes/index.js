@@ -13,7 +13,7 @@ var routerAPI = function routerAPI(app) {
   var api = _config["default"].API_URL;
   app.use(api, router);
   // Routes
-  router.use("/pwa/institutos", _institutos["default"]);
+  router.use("/pwa/condiciones", _institutos["default"]);
   // Return Router
   return router;
 };

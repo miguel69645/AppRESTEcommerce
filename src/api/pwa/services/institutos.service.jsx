@@ -1,13 +1,13 @@
 //Education
-import Institutos from "../models/Institutos";
+import Condiciones from "../models/Institutos";
 import boom from "@hapi/boom";
 
 // FIC: GET INSTITUTOS LIST
-export const getInstitutos = async () => {
-  let institutosList;
+export const getCondiciones = async () => {
+  let condicionesList;
   try {
-    institutosList = await Institutos.find();
-    return institutosList;
+    condicionesList = await Condiciones.find();
+    return condicionesList;
   } catch (error) {
     throw boom.internal(error);
   }

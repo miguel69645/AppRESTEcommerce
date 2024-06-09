@@ -2,7 +2,6 @@ import * as mongoose from "mongoose";
 
 const listasSchema = new mongoose.Schema({
   IdInstitutoOK: { type: String, required: true },
-  Instituto: { type: String, required: true },
   IdListaOK: { type: String, required: true },
   IdListaBK: { type: String, required: true },
   DesLista: { type: String, required: true },

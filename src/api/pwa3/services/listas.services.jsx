@@ -83,7 +83,7 @@ export const getCondicionDet = async (id, condicion) => {
     const condicionDet = role.condicion_det.map((cond) => ({
       IdTipoCondicionOK: cond.IdTipoCondicionOK,
       IdTipoOperadorOK: cond.IdTipoOperadorOK,
-      // Valor: cond.Valor,
+      Valor: cond.Valor,
       Secuecia: cond.Secuecia,
     }));
 

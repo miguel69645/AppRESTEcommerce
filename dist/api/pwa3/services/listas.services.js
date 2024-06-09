@@ -185,7 +185,7 @@ var getCondicionDet = exports.getCondicionDet = /*#__PURE__*/function () {
             return {
               IdTipoCondicionOK: cond.IdTipoCondicionOK,
               IdTipoOperadorOK: cond.IdTipoOperadorOK,
-              // Valor: cond.Valor,
+              Valor: cond.Valor,
               Secuecia: cond.Secuecia
             };
           });

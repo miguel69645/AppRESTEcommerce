@@ -51,11 +51,11 @@ const listasSchema = new mongoose.Schema({
           Valores: [
             {
               valor: { type: String, required: true },
-              IdComparaValor: { type: String, required: true },
+              IdComparaValorOK: { type: String, required: true },
             },
           ],
-          IdOpComparaValores: { type: String, required: true },
-          IdOpLogicoEtiqueta: { type: String, required: true },
+          IdOpComparaValoresOK: { type: String, required: true },
+          IdOpLogicoEtiquetaOK: { type: String, required: true },
         },
       ],
     },

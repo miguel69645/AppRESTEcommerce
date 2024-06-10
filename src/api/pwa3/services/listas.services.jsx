@@ -167,10 +167,10 @@ export const getCondicionesByPromo = async (id, IdTipoPromoOK) => {
       Etiqueta: cond.Etiqueta,
       Valores: cond.Valores.map((val) => ({
         valor: val.valor,
-        IdComparaValor: val.IdComparaValor,
+        IdComparaValorOK: val.IdComparaValorOK,
       })),
-      IdOpComparaValores: cond.IdOpComparaValores,
-      IdOpLogicoEtiqueta: cond.IdOpLogicoEtiqueta,
+      IdOpComparaValoresOK: cond.IdOpComparaValoresOK,
+      IdOpLogicoEtiquetaOK: cond.IdOpLogicoEtiquetaOK,
     }));
 
     return condiciones;

@@ -140,16 +140,16 @@ var listasSchema = new mongoose.Schema({
           type: String,
           required: true
         },
-        IdComparaValor: {
+        IdComparaValorOK: {
           type: String,
           required: true
         }
       }],
-      IdOpComparaValores: {
+      IdOpComparaValoresOK: {
         type: String,
         required: true
       },
-      IdOpLogicoEtiqueta: {
+      IdOpLogicoEtiquetaOK: {
         type: String,
         required: true
       }

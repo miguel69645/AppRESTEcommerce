@@ -336,11 +336,11 @@ var getCondicionesByPromo = exports.getCondicionesByPromo = /*#__PURE__*/functio
               Valores: cond.Valores.map(function (val) {
                 return {
                   valor: val.valor,
-                  IdComparaValor: val.IdComparaValor
+                  IdComparaValorOK: val.IdComparaValorOK
                 };
               }),
-              IdOpComparaValores: cond.IdOpComparaValores,
-              IdOpLogicoEtiqueta: cond.IdOpLogicoEtiqueta
+              IdOpComparaValoresOK: cond.IdOpComparaValoresOK,
+              IdOpLogicoEtiquetaOK: cond.IdOpLogicoEtiquetaOK
             };
           });
           return _context8.abrupt("return", condiciones);

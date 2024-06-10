@@ -14,7 +14,7 @@ var routerAPI = function routerAPI(app) {
   var api = _config["default"].API_URL;
   app.use(api, router);
   // Routes
-  router.use("/prod-serv", _prodServ["default"]);
+  router.use("/v1/condicion", _prodServ["default"]);
   //router.use('/orders', ordersRoutes);
   // Return Router
   return router;

@@ -9,7 +9,7 @@ const routerAPI = (app) => {
   const api = config.API_URL;
   app.use(api, router);
   // Routes
-  router.use("/prod-serv", prodServRoutes);
+  router.use("/v1/condicion", prodServRoutes);
   //router.use('/orders', ordersRoutes);
   // Return Router
   return router;

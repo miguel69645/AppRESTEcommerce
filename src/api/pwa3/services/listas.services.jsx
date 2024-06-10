@@ -589,8 +589,12 @@ export const updateCondicionInPromo = async (
 
     // Only update the fields provided in condicionData
     for (let key in condicionData) {
-      if (condicionData.hasOwnProperty(key) && key !== "Valores") {
-        promo.condiciones[condicionIndex][key] = condicionData[key];
+      if (condicionData.hasOwnProperty(key)) {
+        if (key === "Valores") {
+          promo.condiciones[condicionIndex][key] = [...condicionData[key]];
+        } else {
+          promo.condiciones[condicionIndex][key] = condicionData[key];
+        }
       }
     }
 

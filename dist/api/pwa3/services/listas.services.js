@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.updateValorInCondicion = exports.updateRoleInLista = exports.updatePromotionInLista = exports.updatePriceInLista = exports.updateLista = exports.updateCondicionInPromo = exports.updateCondicionDetInRole = exports.updateBusinessInLista = exports.getValoresByIdEtiquetaOK = exports.getValorByIdTipoCondicionOK = exports.getLista = exports.getCondicionesByPromo = exports.getCondicionDet = exports.getAllRoles = exports.getAllPromotions = exports.getAllPrices = exports.getAllListas = exports.getAllBusinesses = exports.deleteValorInCondicion = exports.deleteRoleInLista = exports.deletePromotionInLista = exports.deletePriceInLista = exports.deleteLista = exports.deleteCondicionInPromo = exports.deleteCondicionDetInRole = exports.deleteBusinessInLista = exports.createLista = exports.addValorToCondicion = exports.addRoleToLista = exports.addPromotionToLista = exports.addPriceToLista = exports.addCondicionToPromo = exports.addCondicionDetToRole = exports.addBusinessToLista = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _listas = _interopRequireDefault(require("../models/listas"));
@@ -1091,8 +1092,12 @@ var updateCondicionInPromo = exports.updateCondicionInPromo = /*#__PURE__*/funct
         case 12:
           // Only update the fields provided in condicionData
           for (key in condicionData) {
-            if (condicionData.hasOwnProperty(key) && key !== "Valores") {
-              promo.condiciones[condicionIndex][key] = condicionData[key];
+            if (condicionData.hasOwnProperty(key)) {
+              if (key === "Valores") {
+                promo.condiciones[condicionIndex][key] = (0, _toConsumableArray2["default"])(condicionData[key]);
+              } else {
+                promo.condiciones[condicionIndex][key] = condicionData[key];
+              }
             }
           }
           _context24.next = 15;

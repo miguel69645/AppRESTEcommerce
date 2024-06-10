@@ -337,7 +337,18 @@ export const addCondicionToPromo = async (id, IdTipoPromoOK, condicionData) => {
       throw boom.notFound("Promoción no encontrada.");
     }
 
-    promo.condiciones.push(condicionData);
+    // Add new condition to the promo
+    promo.condiciones.push({
+      IdEtiquetaOK: condicionData.IdEtiquetaOK,
+      Etiqueta: condicionData.Etiqueta,
+      Valores: condicionData.Valores.map((v) => ({
+        valor: v.valor,
+        IdComparaValorOK: v.IdComparaValorOK,
+      })),
+      IdOpComparaValoresOK: condicionData.IdOpComparaValoresOK,
+      IdOpLogicoEtiquetaOK: condicionData.IdOpLogicoEtiquetaOK,
+    });
+
     await listaItem.save();
 
     return promo.condiciones;

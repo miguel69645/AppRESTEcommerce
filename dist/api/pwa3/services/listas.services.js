@@ -672,7 +672,19 @@ var addCondicionToPromo = exports.addCondicionToPromo = /*#__PURE__*/function ()
           }
           throw _boom["default"].notFound("Promoción no encontrada.");
         case 9:
-          promo.condiciones.push(condicionData);
+          // Add new condition to the promo
+          promo.condiciones.push({
+            IdEtiquetaOK: condicionData.IdEtiquetaOK,
+            Etiqueta: condicionData.Etiqueta,
+            Valores: condicionData.Valores.map(function (v) {
+              return {
+                valor: v.valor,
+                IdComparaValorOK: v.IdComparaValorOK
+              };
+            }),
+            IdOpComparaValoresOK: condicionData.IdOpComparaValoresOK,
+            IdOpLogicoEtiquetaOK: condicionData.IdOpLogicoEtiquetaOK
+          });
           _context16.next = 12;
           return listaItem.save();
         case 12:
